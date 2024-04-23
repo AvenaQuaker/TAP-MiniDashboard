@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Dashboard.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <link href="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.0.5/af-2.7.0/b-3.0.2/b-html5-3.0.2/b-print-3.0.2/cr-2.0.1/date-1.5.2/r-3.0.2/sp-2.3.1/sl-2.0.1/datatables.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- contenedor principal del dashboard -->
+    <div class="Dashboard">
+        <!-- contenedor del sidebar -->
+        <div class="sidebar">
+            <label class="sidebarTitle">Dashboard</label>
+            <label Id="subtitle">Menu</label>
+            <div class="page" id="page1">
+                <div class="pageIMG" id="pageIMG1">
+                    <img src="Recursos/Home.png" id="pimg1">
+                </div>
+                <label class="pageLabel" id="plabel1">CRUD</label>
+            </div>
+            <div class="page" id="page2">
+                <div class="pageIMG" id="pageIMG2">
+                    <img src="Recursos/Circle Chart.png" id="pimg2">
+                </div>
+                <label class="pageLabel" id="plabel2">Graficas</label>
+            </div>
+            <img src="Recursos/Logo.png" id="Logo"> 
+        </div>
+        <!-- Contenedor de la informacion y despliegue de datos -->
+        <div class="datalayout">
+            <!-- contenedor superior de informacion -->
+            <div class="top">
+                <input type="text" placeholder='Search' id="search" >
+                <img src="Recursos/Search.png" id="searchIMG">
+                <label id="currentpage" style="font-style: italic;">SDASDA</label>
+            </div>
+            <!-- pagina del CRUD -->
+            <div class="main1" id="main1">
+                <!-- contenedor del CRUD -->
+                <div class="CRUD" id="style-1">
+                    <div class="filter">
+                        <label>Que le gustaria Mostrar?</label>
+                        <select id="tablafiltrada" onchange="Filtrar()">
+                            <option value="Opcion1">Clientes</option>
+                            <option value="Opcion2">Contratos</option>
+                        </select>
+                    </div>
+                    <!-- Tablas -->
+                    <table id="tabla1" class="cell-border">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Telefono</th>
+                                <th>CorreoElectronico</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table id="tabla2" class="cell-border">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Cliente</th>
+                                <th>Fecha</th>
+                                <th>Metodo de Pago</th>
+                                <th>Anticipo</th>
+                                <th>MontoFinal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- botones y elementos para el CRUD -->
+                <div class="crudbuttons">
+                    <button class="crudbutton" id="Insert">
+                        <span class="shadow"></span>
+                        <span class="edge"></span>
+                        <span class="front text">CREATE</span>
+                    </button>
+                    <button class="crudbutton" id="Update">
+                        <span class="shadow"></span>
+                        <span class="edge"></span>
+                        <span class="front text">UPDATE</span>
+                    </button>
+                    <button class="crudbutton" id="Delete">
+                        <span class="shadow"></span>
+                        <span class="edge"></span>
+                        <span class="front text">DELETE</span>
+                    </button>
+                </div>
+            </div>
+            <!-- pagina de Graficas -->
+            <div class="main2" id="main2">
+                <label id="idnombregrafica1">Contrataciones X Mes</label>
+                <div id="bar-chart1" class="chart"></div>
+                <label id="idnombregrafica2">Ganancias X Mes</label>
+                <div id="bar-chart2" class="chart"></div>
+            </div>
+        </div>
+    </div>
+    <div class="formBox" id="tabla1formbox">
+            <form>
+            <div class="user-box">
+                <input type="number" name="ID" required="" id="tabla1id">
+                <label>ID</label>
+            </div>
+            <div class="user-box">
+                <input type="text" name="Nombre" required="" id="tabla1nombre">
+                <label>Nombre</label>
+            </div>
+            <div class="user-box">
+                <input type="number" name="Edad" required="" id="tabla1edad">
+                <label>Edad</label>
+            </div>
+            <div class="user-box">
+                <input type="text" name="Ciudad" required="" id="tabla1ciudad">
+                <label>Ciudad</label>
+            </div>
+            <div class="formbuttons" id="formbuttonstabla1">
+                <button type="button" id="cancelbutton">
+                    CANCEL
+                <span></span>
+                </button>
+                <button type="button" id="insertbutton">
+                    ACCEPT
+                <span></span>
+                </button>
+            </div>
+            </form>
+        </div>
+</body>
+<script src="Dependencias/jquery.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.0.5/af-2.7.0/b-3.0.2/b-html5-3.0.2/b-print-3.0.2/cr-2.0.1/date-1.5.2/r-3.0.2/sp-2.3.1/sl-2.0.1/datatables.min.js"></script>
+<script src="Dashboard.js"></script>
+</html>

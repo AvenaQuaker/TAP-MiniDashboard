@@ -1,0 +1,413 @@
+body {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url(Recursos/FondoAmanecer.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  border-radius: 1rem;
+}
+
+.Dashboard {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  background: #1f1d2b;
+  border-radius: 1.5rem;
+  color: white;
+  width: 160vh;
+  height: 95vh;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.sidebar {
+  color: grey;
+  display: flex;
+  flex-direction: column;
+  width: 12rem;
+  padding: 2.5rem;
+  border-right: 1px solid #22202e;
+}
+.sidebar .sidebarTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+}
+.sidebar #subtitle {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+.sidebar .page {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.sidebar .pageIMG {
+  border-radius: 1rem;
+  background: #353340;
+  margin-right: 1rem;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sidebar img {
+  filter: invert(0.5);
+  width: 2rem;
+  height: 2rem;
+}
+.sidebar .pageLabel {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+}
+.sidebar #Logo {
+  filter: invert(0.7);
+  margin-top: 45vh;
+  width: 20vh;
+  height: 10vh;
+}
+
+.datalayout {
+  font-family: "Bahnschrift", "Roboto Condensed";
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  padding: 2rem;
+}
+
+.top {
+  display: flex;
+  flex-direction: row;
+}
+.top #search {
+  font-size: 1rem;
+  margin-left: 1rem;
+  padding: 1rem;
+  background-color: #353340;
+  border-radius: 1rem;
+  border: transparent;
+  color: aliceblue;
+  width: 30vh;
+  height: 2vh;
+}
+.top #searchIMG {
+  width: 5vh;
+  height: 5vh;
+  margin-left: 1rem;
+}
+.top #currentpage {
+  font-size: 2rem;
+  position: relative;
+  left: 60vh;
+}
+
+.main1 {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  width: 100%;
+  height: 180vh;
+  overflow: auto;
+}
+.main1 .CRUD {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.main1 .filter {
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.main1 .filter select {
+  padding: 1vh;
+  margin-left: 1rem;
+  background: #353340;
+  width: 25vh;
+  height: 5vh;
+  color: gray;
+  border: transparent;
+  border-radius: 1rem;
+}
+.main1 #tabla_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.main1 .crudbuttons {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.main2 {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+  width: 100%;
+  height: 180vh;
+  overflow: auto;
+}
+.main2 label {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+.main2 .chart {
+  margin-bottom: 2rem;
+}
+
+.main1::-webkit-scrollbar {
+  display: none;
+}
+
+.main2::-webkit-scrollbar {
+  display: none;
+}
+
+.cell-border {
+  background: #282535;
+  color: rgb(185, 185, 185);
+}
+
+div.dt-container select.dt-input {
+  padding: 4px;
+  color: #7961ff;
+}
+
+.crudbutton {
+  position: relative;
+  border: none;
+  background: transparent;
+  width: 50%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  transition: filter 250ms;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  touch-action: manipulation;
+  font-weight: bold;
+}
+
+.shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: hsla(0, 0%, 0%, 0.25);
+  will-change: transform;
+  transform: translateY(2px);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+.edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: linear-gradient(to left, hsl(251, 100%, 16%) 0%, hsl(244, 100%, 32%) 8%, hsl(244, 100%, 32%) 92%, hsl(251, 100%, 16%) 100%);
+}
+
+.front {
+  display: block;
+  position: relative;
+  padding: 12px 27px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  color: white;
+  background: hsl(251, 100%, 47%);
+  will-change: transform;
+  transform: translateY(-4px);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+button:hover {
+  filter: brightness(110%);
+}
+
+button:hover .front {
+  transform: translateY(-6px);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+button:active .front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+}
+
+button:hover .shadow {
+  transform: translateY(4px);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+button:active .shadow {
+  transform: translateY(1px);
+  transition: transform 34ms;
+}
+
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+div.dt-container {
+  position: relative;
+  clear: both;
+  margin-top: 1rem;
+}
+
+table.dataTable {
+  width: 100% !important;
+  margin: 0 auto;
+  border-spacing: 0;
+}
+
+#tabla1_wrapper {
+  display: block;
+}
+
+#tabla2_wrapper {
+  display: block;
+}
+
+#tabla3_wrapper {
+  display: block;
+}
+
+.formBox {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 55%;
+  left: 80%;
+  width: 25rem;
+  padding: 3rem;
+  transform: translate(-50%, -50%);
+  background: rgba(24, 20, 20, 0.987);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.formBox .user-box {
+  position: relative;
+}
+
+.formBox .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.formBox .user-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.formBox .user-box input:focus ~ label,
+.formBox .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #bdb8b8;
+  font-size: 12px;
+}
+
+.formBox form button {
+  background-color: transparent;
+  border: transparent;
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #ffffff;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 0.5s;
+  margin-top: 40px;
+  letter-spacing: 4px;
+}
+
+.formBox {
+  color: #fff;
+}
+.formBox #insertbutton:hover {
+  background: #03f40f;
+  box-shadow: 0 0 5px #03f40f, 0 0 25px #03f40f, 0 0 50px #03f40f, 0 0 100px #03f40f;
+}
+.formBox #cancelbutton:hover {
+  background: #0363f4;
+  box-shadow: 0 0 5px #0373f4, 0 0 25px #0373f4, 0 0 50px #0373f4, 0 0 100px #0373f4;
+}
+
+.formbuttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.formBox button span {
+  position: absolute;
+  display: block;
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+  50%, 100% {
+    left: 100%;
+  }
+}
+.formBox #insertbutton span:nth-child(1) {
+  bottom: 2px;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #03f40f);
+  animation: btn-anim1 2s linear infinite;
+}
+
+.formBox #cancelbutton span:nth-child(1) {
+  bottom: 2px;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #0388f4);
+  animation: btn-anim1 2s linear infinite;
+}/*# sourceMappingURL=Dashboard.css.map */
