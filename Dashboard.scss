@@ -78,9 +78,10 @@ body {
 
     #Logo {
         filter: invert(0.7);
-        margin-top: 45vh;
+        margin-top: auto;
         width: 20vh;
         height: 10vh;
+        align-self: flex-end;
     }
 }
 
@@ -95,6 +96,7 @@ body {
 .top {
     display: flex;
     flex-direction: row;
+    margin-right: 5%;
 
     #search {
         font-size: 1rem;
@@ -117,7 +119,8 @@ body {
     #currentpage {
         font-size: 2rem;
         position: relative;
-        left: 60vh
+        margin-left: auto;
+        align-self: flex-end;
     }
 }
 
@@ -210,7 +213,6 @@ div.dt-container select.dt-input {
     position: relative;
     border: none;
     background: transparent;
-    width: 50%;
     margin-top: 1rem;
     margin-bottom: 1rem;
     padding: 0;
@@ -252,6 +254,23 @@ div.dt-container select.dt-input {
         hsl(251, 100%, 16%) 100%
         );
 }
+
+
+#PDF {
+    .edge {
+        background: linear-gradient(
+            to left,
+            hsl(0, 100%, 16%) 0%,
+            hsl(0, 100%, 32%) 8%,
+            hsl(0, 59%, 35%) 92%,
+            hsl(0, 100%, 16%) 100%
+        )};
+    
+        .front {
+            background: hsl(0, 100%, 47%);
+        }
+}
+
 
 .front {
     display: block;
