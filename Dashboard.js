@@ -349,6 +349,7 @@ let tabla2montofinal = document.getElementById('tabla2montofinal')
 let tabla1formbox = document.getElementById('tabla1formbox')
 let tabla2formbox = document.getElementById('tabla2formbox')
 let acceptbutton = document.getElementById('acceptbutton')
+let buttonPDF = document.getElementById('PDF')
 
 //Eventos
 page1.addEventListener('click',()=>{
@@ -597,7 +598,6 @@ Insert.addEventListener('click',(e)=>{
             break;
     }
 })
-
 //Evento que muestra el widget de UPDATE
 Update.addEventListener('click',(e)=>{
     var tablaFiltrar = Filtro.value
@@ -628,7 +628,6 @@ Update.addEventListener('click',(e)=>{
             break;
     }
 })
-
 //Evento que muestra el widget de DELETE
 Delete.addEventListener('click',(e)=>{
     var tablaFiltrar = Filtro.value
@@ -659,6 +658,35 @@ Delete.addEventListener('click',(e)=>{
     }
 })
 
+buttonPDF.addEventListener('click',(e)=>{
+    var tablaFiltrar = Filtro.value
+    var clickedBox;
+    var newPosition
+    Accion = 'Update'
+
+    switch(tablaFiltrar)
+    {
+        case 'Opcion1':
+            clickedBox = e.target
+            newPosition = clickedBox.getBoundingClientRect();
+            tabla1formbox.style.top = `${newPosition.bottom*1}px`;
+            tabla1formbox.style.left = `${newPosition.right*0.75}px`;
+
+            tabla1formbox.style.opacity = '1';
+            tabla1formbox.style.pointerEvents = 'auto';
+
+            break;
+        case 'Opcion2':
+            clickedBox = e.target
+            newPosition = clickedBox.getBoundingClientRect();
+            tabla2formbox.style.top = `${newPosition.bottom*1}px`;
+            tabla2formbox.style.left = `${newPosition.right*0.75}px`;
+
+            tabla2formbox.style.opacity = '1';
+            tabla2formbox.style.pointerEvents = 'auto';
+            break;
+    }
+})
 
 //Generacion de las Graficas mediante los datos (data)
 config1 = {
