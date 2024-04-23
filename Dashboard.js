@@ -520,60 +520,52 @@ document.querySelectorAll('.cancelbutton').forEach(function(boton){
     })
 })
 
-document.querySelectorAll('acceptbutton').forEach(function(boton){
+document.querySelectorAll('.acceptbutton').forEach(function(boton){
     boton.addEventListener('click',(e)=>{
         var tablaFiltra = Filtro.value
         var Operacion = Accion
+        var widget; 
 
         switch(tablaFiltra)
         {
             case 'Opcion1':
+                widget = e.target.closest('.formBox')
+                widget.style.opacity = '0'
+                widget.style.pointerEvents = 'none'
+
                 switch(Operacion)
                 {
                     case 'Insert':
+                        console.log('CLIENTES INSERT')
                         break;
                     case 'Update':
+                        console.log('CLIENTES UPDATE')
                         break;
                     case 'Delete':
+                        console.log('CLIENTES DELETE')
                         break;
                 }
                 break;
             case 'Opcion2':
-                case 'Insert':
+                widget = e.target.closest('.formBox')
+                widget.style.opacity = '0'
+                widget.style.pointerEvents = 'none'
+
+                switch(Operacion)
+                {
+                    case 'Insert':
+                    console.log('CONTRATOS INSERT')
                         break;
                     case 'Update':
+                        console.log('CONTRATOS UPDATE')
                         break;
                     case 'Delete':
+                        console.log('CONTRATOS DELETE')
                         break;
                 break;
+                }
         }
     })
-})
-
-//Evento que maneja la INSERCION de registros 
-acceptbutton.addEventListener('click',(e)=>{
-    var tablaFiltrar = Filtro.value
-    const widget = e.target.closest('.formBox')
-    widget.style.opacity = '0'
-    widget.style.pointerEvents = 'none'
-
-    switch(tablaFiltrar)
-    {
-        case 'Opcion1':
-            let id = document.getElementById('tabla1id').value;
-            let nombre = document.getElementById('tabla1nombre').value;
-            let edad = document.getElementById('tabla1edad').value;
-            let ciudad = document.getElementById('tabla1ciudad').value;
-
-            console.log('ID:', id);
-            console.log('Nombre:', nombre);
-            console.log('Edad:', edad);
-            console.log('Ciudad:', ciudad);
-            break;
-        case 'Opcion2':
-            break;
-    }
-    
 })
 
 //Evento que muestra el widget de INSERT
