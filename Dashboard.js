@@ -586,6 +586,7 @@ Insert.addEventListener('click',(e)=>{
 
             tabla1formbox.style.opacity = '1';
             tabla1formbox.style.pointerEvents = 'auto';
+            tabla1id.pointerEvents = 'none'
             break;
         case 'Opcion2':
             clickedBox = e.target
@@ -595,6 +596,7 @@ Insert.addEventListener('click',(e)=>{
 
             tabla2formbox.style.opacity = '1';
             tabla2formbox.style.pointerEvents = 'auto';
+            tabla1id.pointerEvents = 'none'
             break;
     }
 })
@@ -645,36 +647,6 @@ Delete.addEventListener('click',(e)=>{
 
             tabla1formbox.style.opacity = '1';
             tabla1formbox.style.pointerEvents = 'auto';
-            break;
-        case 'Opcion2':
-            clickedBox = e.target
-            newPosition = clickedBox.getBoundingClientRect();
-            tabla2formbox.style.top = `${newPosition.bottom*1}px`;
-            tabla2formbox.style.left = `${newPosition.right*0.75}px`;
-
-            tabla2formbox.style.opacity = '1';
-            tabla2formbox.style.pointerEvents = 'auto';
-            break;
-    }
-})
-
-buttonPDF.addEventListener('click',(e)=>{
-    var tablaFiltrar = Filtro.value
-    var clickedBox;
-    var newPosition
-    Accion = 'Update'
-
-    switch(tablaFiltrar)
-    {
-        case 'Opcion1':
-            clickedBox = e.target
-            newPosition = clickedBox.getBoundingClientRect();
-            tabla1formbox.style.top = `${newPosition.bottom*1}px`;
-            tabla1formbox.style.left = `${newPosition.right*0.75}px`;
-
-            tabla1formbox.style.opacity = '1';
-            tabla1formbox.style.pointerEvents = 'auto';
-
             break;
         case 'Opcion2':
             clickedBox = e.target
