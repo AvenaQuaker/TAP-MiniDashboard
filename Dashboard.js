@@ -1,5 +1,6 @@
 //Variables Globales
 let Page = 1
+let Accion;
 let array1 = [
         {
         ID: 1,
@@ -339,10 +340,15 @@ let tabla1id = document.getElementById('tabla1id')
 let tabla1nombre = document.getElementById('tabla1nombre')
 let tabla1edad = document.getElementById('tabla1edad')
 let tabla1ciudad = document.getElementById('tabla1ciudad')
+let tabla2id = document.getElementById('tabla2id')
+let tabla2cliente = document.getElementById('tabla2cliente')
+let tabla2fecha = document.getElementById('tabla2fecha')
+let tabla2metodopago = document.getElementById('tabla2metodopago')
+let tabla2anticipo = document.getElementById('tabla2anticipo')
+let tabla2montofinal = document.getElementById('tabla2montofinal')
 let tabla1formbox = document.getElementById('tabla1formbox')
-let tabla1botones = document.getElementById('formbuttonstabla1')
-let cancelbutton = document.getElementById('cancelbutton')
-let insertbutton = document.getElementById('insertbutton')
+let tabla2formbox = document.getElementById('tabla2formbox')
+let acceptbutton = document.getElementById('acceptbutton')
 
 //Eventos
 page1.addEventListener('click',()=>{
@@ -377,6 +383,7 @@ function VerificarPagina()
             plabel2.style.fontWeight = 'normal'
 
             tabla1formbox.style.opacity = '0'
+            tabla2formbox.style.opacity = '0'
 
             main1.style.display = 'flex'
             main2.style.display = 'none'
@@ -395,6 +402,7 @@ function VerificarPagina()
             plabel1.style.fontWeight = 'normal'
 
             tabla1formbox.style.opacity = '0'
+            tabla2formbox.style.opacity = '0'
 
             main1.style.display = 'none'
             main2.style.display = 'flex'
@@ -413,10 +421,20 @@ function Filtrar()
         case 'Opcion1':
             document.getElementById('tabla1_wrapper').style.display = 'block';
             document.getElementById('tabla2_wrapper').style.display = 'none';
+
+            tabla1formbox.style.opacity = 0;
+            tabla1formbox.style.pointerEvents = 'none'
+            tabla2formbox.style.opacity = 0;
+            tabla2formbox.style.pointerEvents = 'none'
             break;
         case 'Opcion2':
             document.getElementById('tabla1_wrapper').style.display = 'none';
             document.getElementById('tabla2_wrapper').style.display = 'block';
+
+            tabla1formbox.style.opacity = 0;
+            tabla1formbox.style.pointerEvents = 'none'
+            tabla2formbox.style.opacity = 0;
+            tabla2formbox.style.pointerEvents = 'none'
             break;
     }
 }
@@ -484,17 +502,56 @@ tablaDatos2.addEventListener('click', function(evento) {
         }
         objetoTabla = objeto
     }
+
+    tabla2id.value = objetoTabla[0]
+    tabla2cliente.value = objetoTabla[1]
+    tabla2fecha.value = objetoTabla[2]
+    tabla2metodopago.value = objetoTabla[3]
+    tabla2anticipo.value = objetoTabla[4]
+    tabla2montofinal.value = objetoTabla[5]
 });
 
 //Evento que cierra el widget
-cancelbutton.addEventListener('click',(e)=>{
-    const widget = e.target.closest('.formBox')
-    widget.style.opacity = '0'
-    widget.style.pointerEvents = 'none'
+document.querySelectorAll('.cancelbutton').forEach(function(boton){
+    boton.addEventListener('click',(e)=>{
+        const widget = e.target.closest('.formBox')
+        widget.style.opacity = '0'
+        widget.style.pointerEvents = 'none'
+    })
+})
+
+document.querySelectorAll('acceptbutton').forEach(function(boton){
+    boton.addEventListener('click',(e)=>{
+        var tablaFiltra = Filtro.value
+        var Operacion = Accion
+
+        switch(tablaFiltra)
+        {
+            case 'Opcion1':
+                switch(Operacion)
+                {
+                    case 'Insert':
+                        break;
+                    case 'Update':
+                        break;
+                    case 'Delete':
+                        break;
+                }
+                break;
+            case 'Opcion2':
+                case 'Insert':
+                        break;
+                    case 'Update':
+                        break;
+                    case 'Delete':
+                        break;
+                break;
+        }
+    })
 })
 
 //Evento que maneja la INSERCION de registros 
-insertbutton.addEventListener('click',(e)=>{
+acceptbutton.addEventListener('click',(e)=>{
     var tablaFiltrar = Filtro.value
     const widget = e.target.closest('.formBox')
     widget.style.opacity = '0'
@@ -524,6 +581,7 @@ Insert.addEventListener('click',(e)=>{
     var tablaFiltrar = Filtro.value
     var clickedBox;
     var newPosition
+    Accion = 'Insert'
 
     switch(tablaFiltrar)
     {
@@ -537,7 +595,13 @@ Insert.addEventListener('click',(e)=>{
             tabla1formbox.style.pointerEvents = 'auto';
             break;
         case 'Opcion2':
+            clickedBox = e.target
+            newPosition = clickedBox.getBoundingClientRect();
+            tabla2formbox.style.top = `${newPosition.bottom*1}px`;
+            tabla2formbox.style.left = `${newPosition.right*0.75}px`;
 
+            tabla2formbox.style.opacity = '1';
+            tabla2formbox.style.pointerEvents = 'auto';
             break;
     }
 })
@@ -547,6 +611,7 @@ Update.addEventListener('click',(e)=>{
     var tablaFiltrar = Filtro.value
     var clickedBox;
     var newPosition
+    Accion = 'Update'
 
     switch(tablaFiltrar)
     {
@@ -561,7 +626,13 @@ Update.addEventListener('click',(e)=>{
 
             break;
         case 'Opcion2':
+            clickedBox = e.target
+            newPosition = clickedBox.getBoundingClientRect();
+            tabla2formbox.style.top = `${newPosition.bottom*1}px`;
+            tabla2formbox.style.left = `${newPosition.right*0.75}px`;
 
+            tabla2formbox.style.opacity = '1';
+            tabla2formbox.style.pointerEvents = 'auto';
             break;
     }
 })
@@ -571,6 +642,7 @@ Delete.addEventListener('click',(e)=>{
     var tablaFiltrar = Filtro.value
     var clickedBox;
     var newPosition
+    Accion = 'Delete'
 
     switch(tablaFiltrar)
     {
@@ -584,6 +656,13 @@ Delete.addEventListener('click',(e)=>{
             tabla1formbox.style.pointerEvents = 'auto';
             break;
         case 'Opcion2':
+            clickedBox = e.target
+            newPosition = clickedBox.getBoundingClientRect();
+            tabla2formbox.style.top = `${newPosition.bottom*1}px`;
+            tabla2formbox.style.left = `${newPosition.right*0.75}px`;
+
+            tabla2formbox.style.opacity = '1';
+            tabla2formbox.style.pointerEvents = 'auto';
             break;
     }
 })

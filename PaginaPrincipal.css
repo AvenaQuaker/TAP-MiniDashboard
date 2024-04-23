@@ -441,6 +441,18 @@ form label, form p {
   margin-bottom: 1.5rem;
   width: 85%;
 }
+#reserva-form input.Montos {
+  width: 20%;
+  margin-left: 1rem;
+  pointer-events: none;
+  border: transparent;
+  padding: 0;
+}
+
+.dineros {
+  display: flex;
+  flex-direction: row;
+}
 
 #reserva-form select {
   padding: 5px;

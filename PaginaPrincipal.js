@@ -65,8 +65,8 @@ $(document).ready(function () {
     const modal = $("#myModal");
     const abrirModal = $("#abrir-modal");
     const cerrarModal = $(".close");
-    const montoFinalText = $("#monto-final-text");
-    const Anticipo = $('#anticipo-text')
+    let MontoFinal = document.getElementById('monto-final-text')
+    let AnticipoFinal = document.getElementById('anticipo-text')
 
     $('#timedatePicker').datetimepicker();
 
@@ -84,24 +84,23 @@ $(document).ready(function () {
 
     if (dayOfWeek === 5) 
     { 
-        montoFinalText.text("Monto Final: 2500");
-        Anticipo.text('Anticipo: 500')
         MI = 2500;
         Ant = 500;
+        MontoFinal.value = MI;
+        AnticipoFinal.value = Ant;
 
     } else if (dayOfWeek === 0 || dayOfWeek === 6)
     {
-        montoFinalText.text("Monto Final: 3000");
-        Anticipo.text('Anticipo: 600')
         MI = 3000;
         Ant = 600;
+        MontoFinal.value = MI;
+        AnticipoFinal.value = Ant;
     }
     else {
-        montoFinalText.text("Monto Final: 1500");
-        Anticipo.text('Anticipo: 300')
         MI = 1500;
         Ant = 300;
-
+        MontoFinal.value = MI;
+        AnticipoFinal.value = Ant;
     }
     });
 
@@ -144,16 +143,4 @@ function guardarDatosEnLocalStorage() {
     localStorage.setItem('Monto', Monto);
     localStorage.setItem('Anticipo', Anticipo);
     localStorage.setItem('imprimirContrato', imprimirContrato);
-
-    console.clear()
-
-    //Obtener datos en el Local Storgae
-    console.log(localStorage.getItem('fecha'));
-    console.log(localStorage.getItem('nombre'));
-    console.log(localStorage.getItem('telefono'));
-    console.log(localStorage.getItem('email'));
-    console.log(localStorage.getItem('pago'));
-    console.log(localStorage.getItem('Monto'));
-    console.log(localStorage.getItem('Anticipo'));
-    console.log(localStorage.getItem('imprimirContrato'));
 }

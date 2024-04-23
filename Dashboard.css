@@ -290,10 +290,6 @@ table.dataTable {
   display: block;
 }
 
-#tabla3_wrapper {
-  display: block;
-}
-
 .formBox {
   display: flex;
   flex-direction: column;
@@ -366,11 +362,11 @@ table.dataTable {
 .formBox {
   color: #fff;
 }
-.formBox #insertbutton:hover {
+.formBox .acceptbutton:hover {
   background: #03f40f;
   box-shadow: 0 0 5px #03f40f, 0 0 25px #03f40f, 0 0 50px #03f40f, 0 0 100px #03f40f;
 }
-.formBox #cancelbutton:hover {
+.formBox .cancelbutton:hover {
   background: #0363f4;
   box-shadow: 0 0 5px #0373f4, 0 0 25px #0373f4, 0 0 50px #0373f4, 0 0 100px #0373f4;
 }
@@ -394,7 +390,7 @@ table.dataTable {
     left: 100%;
   }
 }
-.formBox #insertbutton span:nth-child(1) {
+.formBox #acceptbutton span:nth-child(1) {
   bottom: 2px;
   left: -100%;
   width: 100%;
@@ -403,7 +399,7 @@ table.dataTable {
   animation: btn-anim1 2s linear infinite;
 }
 
-.formBox #cancelbutton span:nth-child(1) {
+.formBox .cancelbutton span:nth-child(1) {
   bottom: 2px;
   left: -100%;
   width: 100%;
