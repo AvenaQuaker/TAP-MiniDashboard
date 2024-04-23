@@ -262,7 +262,7 @@ div.dt-container select.dt-input {
     .shadow {
         height:80%;
     }
-    
+
     .edge {
         height:80%;
         background: linear-gradient(
@@ -443,35 +443,65 @@ table.dataTable {
     justify-content: space-between;
 }
 
-.formBox button span {
-    position: absolute;
-    display: block;
-}
-
-@keyframes btn-anim1 {
-    0% {
-    left: -100%;
+.cancelbutton {
+    all: unset;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0.6em 2em;
+    border: mediumspringgreen solid 0.15em;
+    border-radius: 0.25em;
+    color: mediumspringgreen;
+    font-size: 1.5em;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border 300ms, color 300ms;
+    user-select: none;
     }
-
-    50%,100% {
-    left: 100%;
+    
+    .cancelbutton p {
+        z-index: 1;
     }
-}
-
-.formBox #acceptbutton span:nth-child(1) {
-    bottom: 2px;
-    left: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #03f40f);
-    animation: btn-anim1 2s linear infinite;
-}
-
-.formBox .cancelbutton span:nth-child(1) {
-    bottom: 2px;
-    left: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #0388f4);
-    animation: btn-anim1 2s linear infinite;
-}
+    
+    .cancelbutton:hover {
+        color: #212121;
+    }
+    
+    .cancelbutton:active {
+        border-color: teal;
+    }
+    
+    .cancelbutton::after, .cancelbutton::before {
+        content: "";
+        position: absolute;
+        width: 9em;
+        aspect-ratio: 1;
+        background: mediumspringgreen;
+        opacity: 50%;
+        border-radius: 50%;
+        transition: transform 500ms, background 300ms;
+    }
+    
+    .cancelbutton::before {
+        left: 0;
+        transform: translateX(-8em);
+    }
+    
+    .cancelbutton::after {
+        right: 0;
+        transform: translateX(8em);
+    }
+    
+    .cancelbutton:hover:before {
+        transform: translateX(-1em);
+    }
+    
+    .cancelbutton:hover:after {
+        transform: translateX(1em);
+    }
+    
+    .cancelbutton:active:before,
+    .cancelbutton:active:after {
+        background: teal;
+    }

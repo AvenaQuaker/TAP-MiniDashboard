@@ -373,18 +373,12 @@ table.dataTable {
   transition: 0.5s;
   margin-top: 40px;
   letter-spacing: 4px;
+
+  
 }
 
 .formBox {
   color: #fff;
-}
-.formBox .acceptbutton:hover {
-  background: #03f40f;
-  box-shadow: 0 0 5px #03f40f, 0 0 25px #03f40f, 0 0 50px #03f40f, 0 0 100px #03f40f;
-}
-.formBox .cancelbutton:hover {
-  background: #0363f4;
-  box-shadow: 0 0 5px #0373f4, 0 0 25px #0373f4, 0 0 50px #0373f4, 0 0 100px #0373f4;
 }
 
 .formbuttons {
@@ -393,33 +387,3 @@ table.dataTable {
   justify-content: space-between;
 }
 
-.formBox button span {
-  position: absolute;
-  display: block;
-}
-
-@keyframes btn-anim1 {
-  0% {
-    left: -100%;
-  }
-  50%, 100% {
-    left: 100%;
-  }
-}
-.formBox #acceptbutton span:nth-child(1) {
-  bottom: 2px;
-  left: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #03f40f);
-  animation: btn-anim1 2s linear infinite;
-}
-
-.formBox .cancelbutton span:nth-child(1) {
-  bottom: 2px;
-  left: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #0388f4);
-  animation: btn-anim1 2s linear infinite;
-}/*# sourceMappingURL=Dashboard.css.map */
