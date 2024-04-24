@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="Dependencies/jquery.datetimepicker.min.css">
     <link rel="stylesheet" href="PaginaPrincipal.css">
 <body>
+    <div class="loading" id="loading">
+        <div class="loader"></div>
+        <label> Redirigiendo...</label>
+    </div>
+
     <header>
         <div id="navbar-left">
             <button id="Boton-Inicio">&#9776; Menu</button>
@@ -30,6 +35,7 @@
             <li><a href="#agenda">Agenda</a></li>
             <li><a href="#contacto">Contacto</a></li>
         </ul>
+        <img src="Resources/Logo.png" id="logolink" onclick="Loading('Dashboard.html')">
     </nav>
 
     <section id="inicio">

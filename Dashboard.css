@@ -76,6 +76,10 @@ body {
   width: 20vh;
   height: 10vh;
   align-self: flex-end;
+  transition: transform 0.5s ease;
+}
+.sidebar #Logo:hover {
+  transform: scale(1.2);
 }
 
 .datalayout {

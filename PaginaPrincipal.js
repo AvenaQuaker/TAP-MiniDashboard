@@ -144,3 +144,11 @@ function guardarDatosEnLocalStorage() {
     localStorage.setItem('Anticipo', Anticipo);
     localStorage.setItem('imprimirContrato', imprimirContrato);
 }
+
+//Funcion que recarga la pagina
+function Loading(url){
+    document.querySelector('.loading').style.display = 'flex';
+    setTimeout(function(){
+        window.location.href = url;
+    }, 5000);
+}
