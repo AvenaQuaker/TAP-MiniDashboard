@@ -8,9 +8,11 @@ body {
   background-attachment: fixed;
   background-size: cover;
   border-radius: 1rem;
+  overflow: hidden;
 }
 
 .Dashboard {
+  filter: invert(0);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
   background: #1f1d2b;
   border-radius: 1.5rem;
@@ -480,4 +482,24 @@ table.dataTable {
   to {
     background-position: 0 175px;
   }
+}
+
+#Error {
+  font-family: "Bahnschrift", "Roboto Condensed";
+  font-style: italic;
+  font-size: 1.5rem;
+  display: flex;
+  position: fixed;
+  right: -1%;
+  bottom: 5%;
+  color: white;
+  padding: 2rem;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border-radius: 1rem;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
 }/*# sourceMappingURL=Dashboard.css.map */

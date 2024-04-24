@@ -350,6 +350,7 @@ let tabla1formbox = document.getElementById('tabla1formbox')
 let tabla2formbox = document.getElementById('tabla2formbox')
 let acceptbutton = document.getElementById('acceptbutton')
 let buttonPDF = document.getElementById('PDF')
+let errorformbox = document.getElementById('Error')
 
 //Eventos
 page1.addEventListener('click',()=>{
@@ -368,6 +369,28 @@ function Loading(url){
     setTimeout(function(){
         window.location.href = url;
     }, 5000);
+}
+
+//Funcion que maneja la notificacion push
+function PushNotification(Tipo,Mensaje) {
+    switch(Tipo){
+        case 'Error':
+            errorformbox.style.background = 'linear-gradient(90deg,#ac0000,#a83301)'
+            errorformbox.textContent = Mensaje
+            errorformbox.style.opacity = '1';
+            setTimeout(function(){
+                errorformbox.style.opacity = '0'
+            },3000)
+            break;
+        case 'Success':
+            errorformbox.style.background = 'linear-gradient(90deg,#00ac00,#01a85a)'
+            errorformbox.textContent = Mensaje
+            errorformbox.style.opacity = '1';
+            setTimeout(function(){
+                errorformbox.style.opacity = '0'
+            },3000)
+            break;
+    }
 }
 
 //Funcion invocada al inicio del programa
@@ -479,19 +502,22 @@ document.querySelectorAll('.acceptbutton').forEach(function(boton){
                     {
                         case 'Insert':
                             console.log('CLIENTES INSERT')
+                            PushNotification('Success','Operaciones completadas con exito')
                             Loading('Dashboard.html')
                             break;
                         case 'Update':
                             console.log('CLIENTES UPDATE')
+                            PushNotification('Success','Operaciones completadas con exito')
                             Loading('Dashboard.html')
                             break;
                         case 'Delete':
                             console.log('CLIENTES DELETE')
+                            PushNotification('Success','Operaciones completadas con exito')
                             Loading('Dashboard.html')
                             break;
                     }
                 }else{
-                    console.log('CORRIGUE MIERDA')
+                    PushNotification('Error','Rellene los datos del formulario')
                 }
                 break;
             case 'Opcion2':
@@ -507,19 +533,22 @@ document.querySelectorAll('.acceptbutton').forEach(function(boton){
                     {
                         case 'Insert':
                             console.log('CONTRATOS INSERT')
+                            PushNotification('Success','Operaciones completadas con exito')
                             Loading('Dashboard.html')
                             break;
                         case 'Update':
                             console.log('CONTRATOS UPDATE')
+                            PushNotification('Success','Operaciones completadas con exito')
                             Loading('Dashboard.html')
                             break;
                         case 'Delete':
                             console.log('CONTRATOS DELETE')
+                            PushNotification('Success','Operaciones completadas con exito')
                             Loading('Dashboard.html')
                             break;
                     }
                 }else{
-                    console.log('CORRIGUE MIERDA')
+                    PushNotification('Error','Rellene los datos del formulario')
                 }
                 break;
         }
