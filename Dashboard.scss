@@ -362,7 +362,7 @@ table.dataTable {
     border-radius: 2rem;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out; 
 }
 
 .formBox .user-box {
@@ -400,41 +400,65 @@ table.dataTable {
     font-size: 12px;
 }
 
-.formBox form button {
-    background-color: transparent;
-    border: transparent;
-    position: relative;
-    display: inline-block;
-    padding: 10px 20px;
-    color: #ffffff;
-    font-size: 16px;
-    text-decoration: none;
-    text-transform: uppercase;
-    overflow: hidden;
-    transition: .5s;
-    margin-top: 40px;
-    letter-spacing: 4px
-}
+.formBox form {
+    button {
+        outline: none;
+        cursor: pointer;
+        padding: 0.9rem 2rem;
+        margin-top: 40px;
+        letter-spacing: 4px;
+        font-family: inherit;
+        font-size: inherit;
+        position: relative;
+        letter-spacing: 0.05rem;
+        font-weight: 700;
+        font-size: 17px;
+        border: none;
+        border-radius: 500px;
+        overflow: hidden;
+        color: ghostwhite;
 
-.formBox {
-    color: #fff;
+        &.cancelbutton{
+            background: #ff0000;
+        }
 
-    .acceptbutton:hover {
-        background: #03f40f;
-        box-shadow: 0 0 5px #03f40f,
-                0 0 25px #03f40f,
-                0 0 50px #03f40f,
-                0 0 100px #03f40f;
-    }
-
-    .cancelbutton:hover {
-        background: #0363f4 ;
-        box-shadow: 0 0 5px #0373f4,
-                0 0 25px #0373f4,
-                0 0 50px #0373f4,
-                0 0 100px #0373f4 ;
+        &.acceptbutton {
+            background: #20fd03;
+        }
     }
     
+    button span {
+        position: relative;
+        z-index: 10;
+        transition: color 0.4s;
+    }
+    
+    button:hover span {
+        color: rgb(0, 0, 0);
+    }
+    
+    button::before,
+    button::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+    
+    button::before {
+        content: "";
+        background: #000;
+        width: 120%;
+        left: -10%;
+        transform: skew(30deg);
+        transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+    }
+    
+    button:hover::before {
+        transform: translate3d(100%, 0, 0);
+    }
 }
 
 .formbuttons {
@@ -443,65 +467,78 @@ table.dataTable {
     justify-content: space-between;
 }
 
-.cancelbutton {
-    all: unset;
-    display: flex;
+#loading {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #0000009f;
+    z-index: 1;
     align-items: center;
-    position: relative;
-    padding: 0.6em 2em;
-    border: mediumspringgreen solid 0.15em;
-    border-radius: 0.25em;
-    color: mediumspringgreen;
-    font-size: 1.5em;
-    font-weight: 600;
-    cursor: pointer;
-    overflow: hidden;
-    transition: border 300ms, color 300ms;
-    user-select: none;
+    justify-content: center;
+    font-family: "Bahnschrift", "Roboto Condensed";
+
+    label {
+        position: relative;
+        font-style: italic;
+        font-size: 2rem;
+        color: white;
+        margin-top: 4rem;
+        right: -0.4rem;
     }
     
-    .cancelbutton p {
-        z-index: 1;
-    }
-    
-    .cancelbutton:hover {
-        color: #212121;
-    }
-    
-    .cancelbutton:active {
-        border-color: teal;
-    }
-    
-    .cancelbutton::after, .cancelbutton::before {
-        content: "";
-        position: absolute;
-        width: 9em;
-        aspect-ratio: 1;
-        background: mediumspringgreen;
-        opacity: 50%;
-        border-radius: 50%;
-        transition: transform 500ms, background 300ms;
-    }
-    
-    .cancelbutton::before {
-        left: 0;
-        transform: translateX(-8em);
-    }
-    
-    .cancelbutton::after {
-        right: 0;
-        transform: translateX(8em);
-    }
-    
-    .cancelbutton:hover:before {
-        transform: translateX(-1em);
-    }
-    
-    .cancelbutton:hover:after {
-        transform: translateX(1em);
-    }
-    
-    .cancelbutton:active:before,
-    .cancelbutton:active:after {
-        background: teal;
-    }
+        .loader {
+            height: 150px;
+            width: 100px;
+            border-radius: 55px 55px 10px 10px;
+            position: relative;
+            background: #f0744f;
+        
+            background-image: linear-gradient(
+            0deg,
+            #f63a99 25%,
+            #30dcf6 20%,
+            #30dcf6 20%,
+            #668c92 50%,
+            #85782a 40%,
+            #f2d200 50%,
+            #f2d200 75%,
+            #70ca5c 75%
+            );
+            background-position: 0px 0px;
+            background-size: auto 175px;
+            background-repeat: repeat-y;
+            animation: colorShift 2s linear infinite;
+        }
+        .loader:before {
+            content: "";
+            position: absolute;
+            left: 10px;
+            bottom: 15px;
+            width: 15px;
+            height: 100px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+        .loader:after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 100%;
+            transform: translate(-50%, 0);
+            box-shadow: 0 15px 2px rgba(0, 0, 0, 0.25) inset;
+            width: 32px;
+            height: 45px;
+            background: #534b44;
+            border-radius: 0 0 12px 12px;
+        }
+        
+        @keyframes colorShift {
+            to {
+            background-position: 0 175px;
+            }
+        }
+        
+}

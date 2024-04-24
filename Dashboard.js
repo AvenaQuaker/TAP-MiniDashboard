@@ -362,6 +362,15 @@ page2.addEventListener('click',()=>{
     VerificarPagina()
 })
 
+//Funcion que recarga la pagina
+function Loading(url){
+    document.querySelector('.loading').style.display = 'flex';
+    setTimeout(function(){
+        window.location.href = url;
+    }, 5000);
+}
+
+//Funcion invocada al inicio del programa
 document.addEventListener('DOMContentLoaded',()=>{
     VerificarPagina()
     Filtrar()
@@ -412,7 +421,6 @@ function VerificarPagina()
             break
     }
 }
-
 //Funcion que muestra la tabla deseada 
 function Filtrar()
 {
@@ -440,36 +448,183 @@ function Filtrar()
     }
 }
 
-//Creacion de las Tablas
-let table1 = new DataTable('#tabla1', {
-    select:true,
-    select: {
-        style: 'single'
-    },
-    data: array1,
-    columns: [
-        { data: 'ID' },
-        { data: 'Nombre' },
-        { data: 'Telefono' },
-        { data: 'CorreoElectronico' }
-    ],
-});
+//Evento que cierra el widget
+document.querySelectorAll('.cancelbutton').forEach(function(boton){
+    boton.addEventListener('click',(e)=>{
+        const widget = e.target.closest('.formBox')
+        widget.style.opacity = '0'
+        widget.style.pointerEvents = 'none'
+    })
+})
 
-let table2 = new DataTable('#tabla2', {
-    select:true,
-    select: {
-        style: 'single'
-    },
-    data: array2,
-    columns: [
-        { data: 'ID' },
-        { data: 'Cliente' },
-        { data: 'Fecha' },
-        { data: 'MetodoDePago' },
-        { data: 'Anticipo' },
-        { data: 'MontoFinal' }
-    ],
-});
+//Metodo que administra todas las posibles operaciones del CRUD
+document.querySelectorAll('.acceptbutton').forEach(function(boton){
+    boton.addEventListener('click',(e)=>{
+        var tablaFiltra = Filtro.value
+        var Operacion = Accion
+        var widget; 
+
+        switch(tablaFiltra)
+        {
+            case 'Opcion1':
+                widget = e.target.closest('.formBox')
+                forma = widget.firstElementChild;
+
+                if(forma.checkValidity())
+                {
+                    widget.style.opacity = '0'
+                    widget.style.pointerEvents = 'none'
+    
+                    switch(Operacion)
+                    {
+                        case 'Insert':
+                            console.log('CLIENTES INSERT')
+                            Loading('Dashboard.html')
+                            break;
+                        case 'Update':
+                            console.log('CLIENTES UPDATE')
+                            Loading('Dashboard.html')
+                            break;
+                        case 'Delete':
+                            console.log('CLIENTES DELETE')
+                            Loading('Dashboard.html')
+                            break;
+                    }
+                }else{
+                    console.log('CORRIGUE MIERDA')
+                }
+                break;
+            case 'Opcion2':
+                widget = e.target.closest('.formBox')
+                forma = widget.firstElementChild;
+
+                if(forma.checkValidity())
+                {
+                    widget.style.opacity = '0'
+                    widget.style.pointerEvents = 'none'
+    
+                    switch(Operacion)
+                    {
+                        case 'Insert':
+                            console.log('CONTRATOS INSERT')
+                            Loading('Dashboard.html')
+                            break;
+                        case 'Update':
+                            console.log('CONTRATOS UPDATE')
+                            Loading('Dashboard.html')
+                            break;
+                        case 'Delete':
+                            console.log('CONTRATOS DELETE')
+                            Loading('Dashboard.html')
+                            break;
+                    }
+                }else{
+                    console.log('CORRIGUE MIERDA')
+                }
+                break;
+        }
+    })
+})
+
+//Evento que muestra el widget de INSERT
+Insert.addEventListener('click',(e)=>{
+    var tablaFiltrar = Filtro.value
+    var clickedBox;
+    var newPosition
+    Accion = 'Insert'
+
+    switch(tablaFiltrar)
+    {
+        case 'Opcion1':
+            clickedBox = e.target
+            newPosition = clickedBox.getBoundingClientRect();
+            tabla1formbox.style.top = `${newPosition.bottom*1}px`;
+            tabla1formbox.style.left = `${newPosition.right*0.75}px`;
+
+            tabla1formbox.style.opacity = '1';
+            tabla1formbox.style.pointerEvents = 'auto';
+            tabla1id.disabled = true;
+            tabla1id.style.color = 'transparent'
+            break;
+        case 'Opcion2':
+            clickedBox = e.target
+            newPosition = clickedBox.getBoundingClientRect();
+            tabla2formbox.style.top = `${newPosition.bottom*1}px`;
+            tabla2formbox.style.left = `${newPosition.right*0.75}px`;
+
+            tabla2formbox.style.opacity = '1';
+            tabla2formbox.style.pointerEvents = 'auto';
+            tabla2id.disabled = true;
+            tabla2id.style.color = 'transparent'
+            break;
+    }
+})
+//Evento que muestra el widget de UPDATE
+Update.addEventListener('click',(e)=>{
+    var tablaFiltrar = Filtro.value
+    var clickedBox;
+    var newPosition
+    Accion = 'Update'
+
+    switch(tablaFiltrar)
+    {
+        case 'Opcion1':
+            clickedBox = e.target
+            newPosition = clickedBox.getBoundingClientRect();
+            tabla1formbox.style.top = `${newPosition.bottom*1}px`;
+            tabla1formbox.style.left = `${newPosition.right*0.75}px`;
+
+            tabla1formbox.style.opacity = '1';
+            tabla1formbox.style.pointerEvents = 'auto';
+            tabla1id.disabled = false;
+            tabla1id.style.color = 'white'            
+            break;
+        case 'Opcion2':
+            clickedBox = e.target
+            newPosition = clickedBox.getBoundingClientRect();
+            tabla2formbox.style.top = `${newPosition.bottom*1}px`;
+            tabla2formbox.style.left = `${newPosition.right*0.75}px`;
+
+            tabla2formbox.style.opacity = '1';
+            tabla2formbox.style.pointerEvents = 'auto';
+            tabla2id.disabled = false;
+            tabla2id.style.color = 'white'     
+            break;
+    }
+})
+//Evento que muestra el widget de DELETE
+Delete.addEventListener('click',(e)=>{
+    var tablaFiltrar = Filtro.value
+    var clickedBox;
+    var newPosition
+    Accion = 'Delete'
+
+    switch(tablaFiltrar)
+    {
+        case 'Opcion1':
+            clickedBox = e.target
+            newPosition = clickedBox.getBoundingClientRect();
+            tabla1formbox.style.top = `${newPosition.bottom*1}px`;
+            tabla1formbox.style.left = `${newPosition.right*0.75}px`;
+
+            tabla1formbox.style.opacity = '1';
+            tabla1formbox.style.pointerEvents = 'auto';
+            tabla1id.disabled = false;
+            tabla1id.style.color = 'white'
+            break;
+        case 'Opcion2':
+            clickedBox = e.target
+            newPosition = clickedBox.getBoundingClientRect();
+            tabla2formbox.style.top = `${newPosition.bottom*1}px`;
+            tabla2formbox.style.left = `${newPosition.right*0.75}px`;
+
+            tabla2formbox.style.opacity = '1';
+            tabla2formbox.style.pointerEvents = 'auto';
+            tabla2id.disabled = false;
+            tabla2id.style.color = 'white'
+            break;
+    }
+})
 
 //Obtencion de los datos de una fila para el widget
 let tablaDatos1 = document.getElementById("tabla1");
@@ -512,153 +667,37 @@ tablaDatos2.addEventListener('click', function(evento) {
     tabla2montofinal.value = objetoTabla[5]
 });
 
-//Evento que cierra el widget
-document.querySelectorAll('.cancelbutton').forEach(function(boton){
-    boton.addEventListener('click',(e)=>{
-        const widget = e.target.closest('.formBox')
-        widget.style.opacity = '0'
-        widget.style.pointerEvents = 'none'
-    })
-})
+//Creacion de las Tablas
+let table1 = new DataTable('#tabla1', {
+    select:true,
+    select: {
+        style: 'single'
+    },
+    data: array1,
+    columns: [
+        { data: 'ID' },
+        { data: 'Nombre' },
+        { data: 'Telefono' },
+        { data: 'CorreoElectronico' }
+    ],
+});
 
-document.querySelectorAll('.acceptbutton').forEach(function(boton){
-    boton.addEventListener('click',(e)=>{
-        var tablaFiltra = Filtro.value
-        var Operacion = Accion
-        var widget; 
+let table2 = new DataTable('#tabla2', {
+    select:true,
+    select: {
+        style: 'single'
+    },
+    data: array2,
+    columns: [
+        { data: 'ID' },
+        { data: 'Cliente' },
+        { data: 'Fecha' },
+        { data: 'MetodoDePago' },
+        { data: 'Anticipo' },
+        { data: 'MontoFinal' }
+    ],
+});
 
-        switch(tablaFiltra)
-        {
-            case 'Opcion1':
-                widget = e.target.closest('.formBox')
-                widget.style.opacity = '0'
-                widget.style.pointerEvents = 'none'
-
-                switch(Operacion)
-                {
-                    case 'Insert':
-                        console.log('CLIENTES INSERT')
-                        break;
-                    case 'Update':
-                        console.log('CLIENTES UPDATE')
-                        break;
-                    case 'Delete':
-                        console.log('CLIENTES DELETE')
-                        break;
-                }
-                break;
-            case 'Opcion2':
-                widget = e.target.closest('.formBox')
-                widget.style.opacity = '0'
-                widget.style.pointerEvents = 'none'
-
-                switch(Operacion)
-                {
-                    case 'Insert':
-                    console.log('CONTRATOS INSERT')
-                        break;
-                    case 'Update':
-                        console.log('CONTRATOS UPDATE')
-                        break;
-                    case 'Delete':
-                        console.log('CONTRATOS DELETE')
-                        break;
-                break;
-                }
-        }
-    })
-})
-
-//Evento que muestra el widget de INSERT
-Insert.addEventListener('click',(e)=>{
-    var tablaFiltrar = Filtro.value
-    var clickedBox;
-    var newPosition
-    Accion = 'Insert'
-
-    switch(tablaFiltrar)
-    {
-        case 'Opcion1':
-            clickedBox = e.target
-            newPosition = clickedBox.getBoundingClientRect();
-            tabla1formbox.style.top = `${newPosition.bottom*1}px`;
-            tabla1formbox.style.left = `${newPosition.right*0.75}px`;
-
-            tabla1formbox.style.opacity = '1';
-            tabla1formbox.style.pointerEvents = 'auto';
-            tabla1id.pointerEvents = 'none'
-            break;
-        case 'Opcion2':
-            clickedBox = e.target
-            newPosition = clickedBox.getBoundingClientRect();
-            tabla2formbox.style.top = `${newPosition.bottom*1}px`;
-            tabla2formbox.style.left = `${newPosition.right*0.75}px`;
-
-            tabla2formbox.style.opacity = '1';
-            tabla2formbox.style.pointerEvents = 'auto';
-            tabla1id.pointerEvents = 'none'
-            break;
-    }
-})
-//Evento que muestra el widget de UPDATE
-Update.addEventListener('click',(e)=>{
-    var tablaFiltrar = Filtro.value
-    var clickedBox;
-    var newPosition
-    Accion = 'Update'
-
-    switch(tablaFiltrar)
-    {
-        case 'Opcion1':
-            clickedBox = e.target
-            newPosition = clickedBox.getBoundingClientRect();
-            tabla1formbox.style.top = `${newPosition.bottom*1}px`;
-            tabla1formbox.style.left = `${newPosition.right*0.75}px`;
-
-            tabla1formbox.style.opacity = '1';
-            tabla1formbox.style.pointerEvents = 'auto';
-
-            break;
-        case 'Opcion2':
-            clickedBox = e.target
-            newPosition = clickedBox.getBoundingClientRect();
-            tabla2formbox.style.top = `${newPosition.bottom*1}px`;
-            tabla2formbox.style.left = `${newPosition.right*0.75}px`;
-
-            tabla2formbox.style.opacity = '1';
-            tabla2formbox.style.pointerEvents = 'auto';
-            break;
-    }
-})
-//Evento que muestra el widget de DELETE
-Delete.addEventListener('click',(e)=>{
-    var tablaFiltrar = Filtro.value
-    var clickedBox;
-    var newPosition
-    Accion = 'Delete'
-
-    switch(tablaFiltrar)
-    {
-        case 'Opcion1':
-            clickedBox = e.target
-            newPosition = clickedBox.getBoundingClientRect();
-            tabla1formbox.style.top = `${newPosition.bottom*1}px`;
-            tabla1formbox.style.left = `${newPosition.right*0.75}px`;
-
-            tabla1formbox.style.opacity = '1';
-            tabla1formbox.style.pointerEvents = 'auto';
-            break;
-        case 'Opcion2':
-            clickedBox = e.target
-            newPosition = clickedBox.getBoundingClientRect();
-            tabla2formbox.style.top = `${newPosition.bottom*1}px`;
-            tabla2formbox.style.left = `${newPosition.right*0.75}px`;
-
-            tabla2formbox.style.opacity = '1';
-            tabla2formbox.style.pointerEvents = 'auto';
-            break;
-    }
-})
 
 //Generacion de las Graficas mediante los datos (data)
 config1 = {
