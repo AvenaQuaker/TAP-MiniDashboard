@@ -2,7 +2,7 @@ body {
     font-family: "Bahnschrift", "Roboto Condensed";
     margin: 0;
     padding: 0;
-    background-image:url("Recursos/Fondo.png");
+    background-image:url("Resources/Fondo.png");
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
@@ -22,7 +22,7 @@ header {
 .Titulo {
     width: 400px; 
     height: 50px; 
-    background: url('Recursos/Titulo.png');
+    background: url('Resources/Titulo.png');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -32,7 +32,7 @@ header {
 .Logo {
     width: 160px; 
     height: 50px; 
-    background: url('Recursos/Logo.png');
+    background: url('Resources/Logo.png');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -46,7 +46,7 @@ header {
 }
 
 .FotoInicial {
-    background: url('Recursos/FotoInicial.jpg');
+    background: url('Resources/FotoInicial.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -423,7 +423,7 @@ form label, form p {
 }
 
 .modal div #ImagenModal {
-    background: url('Recursos/Foto5.jpg');
+    background: url('Resources/Foto5.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -618,7 +618,7 @@ footer p {
 
 @media screen and (max-width: 800px) {
     .FotoInicial {
-        background: url('Recursos/FotoInicial.jpg');
+        background: url('Resources/FotoInicial.jpg');
         background-repeat: no-repeat;
         background-position: center center;
         background-size: cover;
@@ -644,7 +644,7 @@ footer p {
     .Titulo {
         width: 300px; 
         height: 40px; 
-        background: url('Recursos/Titulo.png');
+        background: url('Resources/Titulo.png');
         background-repeat: no-repeat;
         background-position: center center;
         background-size: cover;
@@ -654,7 +654,7 @@ footer p {
     .Logo {
         width: 140px; 
         height: 60px; 
-        background: url('Recursos/Logo.png');
+        background: url('Resources/Logo.png');
         background-repeat: no-repeat;
         background-position: center center;
         background-size: cover;
@@ -712,7 +712,7 @@ footer p {
     .Titulo {
         width: 300px; 
         height: 40px; 
-        background: url('Recursos/Titulo.png');
+        background: url('Resources/Titulo.png');
         background-repeat: no-repeat;
         background-position: center center;
         background-size: cover;
@@ -722,7 +722,7 @@ footer p {
     .Logo {
         width: 100px; 
         height: 30px; 
-        background: url('Recursos/Logo.png');
+        background: url('Resources/Logo.png');
         background-repeat: no-repeat;
         background-position: center center;
         background-size: cover;
