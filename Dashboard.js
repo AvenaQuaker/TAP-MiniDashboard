@@ -1,4 +1,5 @@
 //Variables Globales
+let objetoTabla = {}
 let Page = 1
 let Accion;
 let array1 = [
@@ -285,8 +286,6 @@ let array2 = [
         MontoFinal: 700
         }
     ];
-
-let objetoTabla = {}
 
 var data1 = [
     { y: 'Enero', a: 10},
@@ -605,8 +604,8 @@ Update.addEventListener('click',(e)=>{
 
             tabla1formbox.style.opacity = '1';
             tabla1formbox.style.pointerEvents = 'auto';
-            tabla1id.disabled = false;
-            tabla1id.style.color = 'white'            
+            tabla1id.disabled = true;
+            tabla1id.style.color = 'transparent'            
             break;
         case 'Opcion2':
             clickedBox = e.target
@@ -616,8 +615,8 @@ Update.addEventListener('click',(e)=>{
 
             tabla2formbox.style.opacity = '1';
             tabla2formbox.style.pointerEvents = 'auto';
-            tabla2id.disabled = false;
-            tabla2id.style.color = 'white'     
+            tabla2id.disabled = true;
+            tabla2id.style.color = 'transparent'     
             break;
     }
 })
@@ -637,9 +636,13 @@ Delete.addEventListener('click',(e)=>{
             tabla1formbox.style.left = `${newPosition.right*0.75}px`;
 
             tabla1formbox.style.opacity = '1';
-            tabla1formbox.style.pointerEvents = 'auto';
-            tabla1id.disabled = false;
-            tabla1id.style.color = 'white'
+            tabla1formbox.style.pointerEvents = 'none'
+            document.querySelectorAll('.cancelbutton').forEach(function(boton){
+                boton.style.pointerEvents = 'auto'
+            })
+            document.querySelectorAll('.acceptbutton').forEach(function(boton){
+                boton.style.pointerEvents = 'auto'
+            })
             break;
         case 'Opcion2':
             clickedBox = e.target
@@ -648,9 +651,13 @@ Delete.addEventListener('click',(e)=>{
             tabla2formbox.style.left = `${newPosition.right*0.75}px`;
 
             tabla2formbox.style.opacity = '1';
-            tabla2formbox.style.pointerEvents = 'auto';
-            tabla2id.disabled = false;
-            tabla2id.style.color = 'white'
+            tabla2formbox.style.pointerEvents = 'none'
+            document.querySelectorAll('.cancelbutton').forEach(function(boton){
+                boton.style.pointerEvents = 'auto'
+            })
+            document.querySelectorAll('.acceptbutton').forEach(function(boton){
+                boton.style.pointerEvents = 'auto'
+            })
             break;
     }
 })
