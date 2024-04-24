@@ -553,7 +553,6 @@ document.querySelectorAll('.acceptbutton').forEach(function(boton){
         }
     })
 })
-
 //Evento que muestra el widget de INSERT
 Insert.addEventListener('click',(e)=>{
     var tablaFiltrar = Filtro.value
