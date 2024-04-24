@@ -83,6 +83,7 @@ body {
         height: 10vh;
         align-self: flex-end;
         transition: transform 0.5s ease;
+        overflow: hidden;
 
         &:hover {
             transform: scale(1.2);

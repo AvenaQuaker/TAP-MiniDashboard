@@ -782,6 +782,7 @@ footer p {
 
 #logolink {
   transition: transform 0.5s ease;
+  overflow: hidden;
 }
 #logolink:hover {
   transform: scale(1.2);
