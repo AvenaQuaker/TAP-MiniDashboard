@@ -367,7 +367,7 @@ function Loading(url){
     document.querySelector('.loading').style.display = 'flex';
     setTimeout(function(){
         window.location.href = url;
-    }, 5000);
+    }, 3000);
 }
 
 //Funcion que maneja la notificacion push
@@ -766,3 +766,7 @@ config2 = {
 };
 config2.element = 'bar-chart2';
 Morris.Bar(config2);
+
+config3 = {
+    
+}
