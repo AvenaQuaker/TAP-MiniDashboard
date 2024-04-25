@@ -152,3 +152,33 @@ function Loading(url){
         window.location.href = url;
     }, 5000);
 }
+
+//Boton de aceptar
+document.getElementById("btn-print").addEventListener("click", async () => {
+    console.log("clic");
+    const formData = new FormData(document.getElementById("reserva-form"));
+    const jsonData = {};
+
+    for (const [key, value] of formData.entries()) {
+        jsonData[key] = value;
+    }
+
+    console.log("Envio: ", jsonData);
+
+    await fetch('http://localhost:8082/SaveData', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(jsonData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("Datos guardados correctamente");
+        } else {
+            alert("Error al guardar los datos: " + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error al enviar la solicitud:', error);
+    });
+});
