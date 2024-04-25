@@ -736,6 +736,7 @@ let table2 = new DataTable('#tabla2', {
 
 //Generacion de las Graficas mediante los datos (data)
 config1 = {
+    element: 'bar-chart1',
     data: data1,
     xkey: 'y',
     ykeys: ['a'],
@@ -747,11 +748,11 @@ config1 = {
     pointFillColors:['#ffffff'],
     pointStrokeColors: ['black'],
     barColors:['#008cff','black']
-};
-config1.element = 'bar-chart1';
-Morris.Bar(config1);
+}; Morris.Bar(config1);
+
 
 config2 = {
+    element:'bar-chart2',
     data: data2,
     xkey: 'y',
     ykeys: ['a'],
@@ -763,10 +764,39 @@ config2 = {
     pointFillColors:['#ffffff'],
     pointStrokeColors: ['black'],
     barColors:['#002aff','black']
-};
-config2.element = 'bar-chart2';
-Morris.Bar(config2);
+}; Morris.Bar(config2);
 
 config3 = {
-    
-}
+    element: 'line-chart',
+    data: [
+        { month: '2012-01', value: 20 },
+        { month: '2012-02', value: 10 },
+        { month: '2012-03', value: 5 },
+        { month: '2012-04', value: 5 },
+        { month: '2012-05', value: 20 },
+        { month: '2012-06', value: 20 },
+        { month: '2012-07', value: 10 },
+        { month: '2012-08', value: 5 },
+        { month: '2012-09', value: 5 },
+        { month: '2012-10', value: 20 },
+        { month: '2012-11', value: 20 },
+        { month: '2012-12', value: 20 }
+    ],
+    xkey: 'month',
+    ykeys: ['value'],
+    labels: ['Value']
+}; Morris.Line(config3);
+
+config4 = {
+    resize:false,
+    element: 'donut-chart',
+    data: [
+    {label: "Lunes", value: 5},
+    {label: "Martes", value: 5},
+    {label: "Miercoles", value: 5},
+    {label: "Jueves", value: 10},
+    {label: "Viernes", value: 25},
+    {label: "Sabado", value: 20},
+    {label: "Domingo", value: 30}
+    ]
+}; Morris.Donut(config4);
