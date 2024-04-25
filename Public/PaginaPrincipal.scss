@@ -8,6 +8,11 @@ body {
     background-attachment: fixed;
     background-size: cover;
     border-radius: 1rem;
+    
+&::-webkit-scrollbar {
+    display: none; 
+}
+
 }
 
 header { 
@@ -143,12 +148,11 @@ section {
     padding: 20px;
     border-radius: 1rem;
     box-shadow: 0rem 0.3rem 0.3rem 0rem rgba(0, 0, 0, 0.25);
-    max-height: 70vh;
+    height: fit-content;
     max-width: 60%; 
     display: flex;
     flex-direction: column;
     text-align: center;
-    overflow:auto;
 }
 
 #InicioDividido {
@@ -174,22 +178,15 @@ section#inicio p {
     margin-bottom: 20px;
 }
 
-section#agenda {
-    height: 80vh;
-    max-width: 60%;
-}
-
 section#agenda p {
     margin-top: -15px;
 }
 
-section#contacto {
-    height: 20vh;
-    justify-content: center;
-}
 
 .container {
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
     max-width: 90%;
     margin: 0 auto;
 }
@@ -232,12 +229,14 @@ h1, h2 {
     display: inline-block;
     background-color: #333;
     color: #fff;
+    max-width:10rem ;
     padding: 20px 40px;
     text-decoration: none;
     border-radius: 10px;
     font-weight: bold;
     font-size: large;
     transition: background-color 0.3s, color 0.3s;
+    align-self: center;
 }
 
 .btnModal {
@@ -290,9 +289,8 @@ footer {
     padding: 40px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 2rem;
-    height:80%;
-    width:70%; 
-    overflow-y: auto;
+    height:fit-content;
+    width: fit-content;
 }
 
 .modal div #VentanaModal {
@@ -566,8 +564,6 @@ footer p {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    height: 150vh;
-    max-width: 50%; 
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -590,168 +586,168 @@ footer p {
     }
 }
 
-@media screen and (max-height: 800px) {
-    .Imagenes img {
-        width: 100%;
-        height: 55vh;
-    }
+// @media screen and (max-height: 800px) {
+//     .Imagenes img {
+//         width: 100%;
+//         height: 55vh;
+//     }
 
-    .btnModal {
-        display: inline-block;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        background-color: #333;
-        color: #fff;
-        padding: 15px 30px;
-        text-decoration: none;
-        border-radius: 10px;
-        font-weight: bold;
-        font-size:medium;
-    }
+//     .btnModal {
+//         display: inline-block;
+//         margin-top: 10px;
+//         margin-bottom: 10px;
+//         background-color: #333;
+//         color: #fff;
+//         padding: 15px 30px;
+//         text-decoration: none;
+//         border-radius: 10px;
+//         font-weight: bold;
+//         font-size:medium;
+//     }
 
-    #preguntas-frecuentes {
-        font-size: x-small !important;
-    }
+//     #preguntas-frecuentes {
+//         font-size: x-small !important;
+//     }
 
-    .pregunta {
-        margin-bottom: 40px !important;
-    }
+//     .pregunta {
+//         margin-bottom: 40px !important;
+//     }
 
-    #Informacion {
-        font-size: x-small;
-    }
-}
+//     #Informacion {
+//         font-size: x-small;
+//     }
+// }
 
-@media screen and (max-height: 1100px) {
-    #preguntas-frecuentes {
-        font-size:large;
-    }
+// @media screen and (max-height: 1100px) {
+//     #preguntas-frecuentes {
+//         font-size:large;
+//     }
 
-    .pregunta {
-        margin-bottom: 50px;
-    }
-}
+//     .pregunta {
+//         margin-bottom: 50px;
+//     }
+// }
 
-@media screen and (max-width: 800px) {
-    .FotoInicial {
-        background: url('Resources/FotoInicial.jpg');
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: cover;
-        width: 1300px;
-        max-width: 100%; 
-        height: 30vh; 
-    }
+// @media screen and (max-width: 800px) {
+//     .FotoInicial {
+//         background: url('Resources/FotoInicial.jpg');
+//         background-repeat: no-repeat;
+//         background-position: center center;
+//         background-size: cover;
+//         width: 1300px;
+//         max-width: 100%; 
+//         height: 30vh; 
+//     }
 
-    .Imagenes img {
-        width: 100%;
-        max-height: 30vh;
-    }
+//     .Imagenes img {
+//         width: 100%;
+//         max-height: 30vh;
+//     }
 
-    #InicioDividido img {
-        width: 100%;
-        height: 28vh;
-    }
+//     #InicioDividido img {
+//         width: 100%;
+//         height: 28vh;
+//     }
 
-    #Informacion {
-        font-size: x-small;
-    }
+//     #Informacion {
+//         font-size: x-small;
+//     }
 
-    .Titulo {
-        width: 300px; 
-        height: 40px; 
-        background: url('Resources/Titulo.png');
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: cover;
-        margin-left:-100px;
-    }
+//     .Titulo {
+//         width: 300px; 
+//         height: 40px; 
+//         background: url('Resources/Titulo.png');
+//         background-repeat: no-repeat;
+//         background-position: center center;
+//         background-size: cover;
+//         margin-left:-100px;
+//     }
     
-    .Logo {
-        width: 140px; 
-        height: 60px; 
-        background: url('Resources/Logo.png');
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: cover;
-        margin-left: -150px;
-    }
+//     .Logo {
+//         width: 140px; 
+//         height: 60px; 
+//         background: url('Resources/Logo.png');
+//         background-repeat: no-repeat;
+//         background-position: center center;
+//         background-size: cover;
+//         margin-left: -150px;
+//     }
 
-    section {
-        background-color: #fff;
-        margin: 20px auto !important;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        height: 60vh;
-        max-width: 60%; 
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-    }
+//     section {
+//         background-color: #fff;
+//         margin: 20px auto !important;
+//         border-radius: 5px;
+//         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+//         height: 60vh;
+//         max-width: 60%; 
+//         display: flex;
+//         flex-direction: column;
+//         text-align: center;
+//     }
     
-    section#inicio p {
-        margin-top: -15px;
-        margin-bottom: 20px;
-    }
+//     section#inicio p {
+//         margin-top: -15px;
+//         margin-bottom: 20px;
+//     }
 
-    section#inicio {
-        margin-top: -15px;
-        margin-bottom: 20px;
-        height: 40vh;
-    }
+//     section#inicio {
+//         margin-top: -15px;
+//         margin-bottom: 20px;
+//         height: 40vh;
+//     }
     
-    section#agenda {
-        height: 50vh;
-        max-width: 60%;
-    }
+//     section#agenda {
+//         height: 50vh;
+//         max-width: 60%;
+//     }
     
-    section#agenda p {
-        margin-top: -15px;
-    }
+//     section#agenda p {
+//         margin-top: -15px;
+//     }
     
-    section#contacto {
-        max-height: 25vh;
-        justify-content: center;
-    }
+//     section#contacto {
+//         max-height: 25vh;
+//         justify-content: center;
+//     }
 
-}
+// }
 
-@media screen and (max-width: 700px) {
-    #Informacion {
-        font-size: xx-small;
-    }
+// @media screen and (max-width: 700px) {
+//     #Informacion {
+//         font-size: xx-small;
+//     }
 
-    section .container {
-        font-size: small;
-    }
+//     section .container {
+//         font-size: small;
+//     }
 
-    .Titulo {
-        width: 300px; 
-        height: 40px; 
-        background: url('Resources/Titulo.png');
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: cover;
-        margin-left:-100px;
-    }
+//     .Titulo {
+//         width: 300px; 
+//         height: 40px; 
+//         background: url('Resources/Titulo.png');
+//         background-repeat: no-repeat;
+//         background-position: center center;
+//         background-size: cover;
+//         margin-left:-100px;
+//     }
     
-    .Logo {
-        width: 100px; 
-        height: 30px; 
-        background: url('Resources/Logo.png');
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: cover;
-        margin-left: -110px;
-        margin-bottom: 10px;
-        transition: transform 0.5s ease;
-    }
+//     .Logo {
+//         width: 100px; 
+//         height: 30px; 
+//         background: url('Resources/Logo.png');
+//         background-repeat: no-repeat;
+//         background-position: center center;
+//         background-size: cover;
+//         margin-left: -110px;
+//         margin-bottom: 10px;
+//         transition: transform 0.5s ease;
+//     }
 
-    #preguntas-frecuentes {
-        height: 100vh;
-        max-width: 70%; 
-    }
-}
+//     #preguntas-frecuentes {
+//         height: 100vh;
+//         max-width: 70%; 
+//     }
+// }
 
 #anticipo-text {
     margin-bottom: 1rem;

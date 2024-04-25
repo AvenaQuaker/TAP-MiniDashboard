@@ -687,10 +687,12 @@ $.ajax({
                 { data: 'Telefono' },
                 { data: 'Correo_Electronico' }
             ]
-        });
+        })
+        PushNotification('Success','Carga de datos exitosa')
     },
     error: function(xhr, status, error) {
         console.error(status, error);
+        PushNotification('Error','Carga de datos fallida')
     }
 });
 
@@ -710,10 +712,12 @@ $.ajax({
                 { data: 'Anticipo' },
                 { data: 'Monto_Final' }
             ]
-        });
+        })
+        PushNotification('Success','Carga de datos exitosa')
     },
     error: function(xhr, status, error) {
         console.error(status, error);
+        PushNotification('Error','Carga de datos fallida')
     }
 });
 
