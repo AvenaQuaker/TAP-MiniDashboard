@@ -87,21 +87,21 @@
             <p>Ingrese los datos solicitados para agendar su reserva</p>
 
             <div id="VentanaModal">
-            <form id="reserva-form">
+            <form id="reserva-form" enctype="application/x-www-form-urlencoded">
                 <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre"  onkeyup="guardarDatosEnLocalStorage()" required>
-    
-                <label for="Fecha">Fecha:</label> 
-                <input type="text" id="timedatePicker" onkeyup="guardarDatosEnLocalStorage()" required>
+                <input type="text" id="nombre" name="Nombre" onkeyup="guardarDatosEnLocalStorage()" required>
 
                 <label for="telefono">Teléfono:</label>
-                <input type="tel" id="telefono"  onkeyup="guardarDatosEnLocalStorage()" required>
+                <input type="tel" id="telefono" name="Telefono" onkeyup="guardarDatosEnLocalStorage()" required>
 
                 <label for="email">Correo Electronico:</label>
-                <input type="email" id="email"  onkeyup="guardarDatosEnLocalStorage()" required>
+                <input type="email" id="email" name="Correo_Electronico" onkeyup="guardarDatosEnLocalStorage()" required>
     
+                <label for="Fecha">Fecha:</label> 
+                <input type="text" id="timedatePicker" name="Fecha" onkeyup="guardarDatosEnLocalStorage()" required>
+
                 <label for="Pago"> Metodo de Pago</label>
-                <select id="metodoPago" onchange="guardarDatosEnLocalStorage()" required> 
+                <select id="metodoPago" name="Metodo_De_Pago" onchange="guardarDatosEnLocalStorage()" required> 
                     <option value=""></option>
                     <option value="Paypal">Paypal</option>
                     <option value="Mastercard">Mastercard</option>
@@ -111,12 +111,13 @@
                 </select>
 
                 <div class="dineros">
-                    <p>Monto Final:</p>
-                    <input type="text" id="monto-final-text" class="Montos">
-                </div>
-                <div class="dineros">
                     <p>Anticipo:</p>
-                    <input type="text" id="anticipo-text" class="Montos">
+                    <input type="text" id="anticipo-text" name="Anticipo" class="Montos">
+                </div>
+
+                <div class="dineros">
+                    <p>Monto Final:</p>
+                    <input type="text" id="monto-final-text" name="Monto_Final" class="Montos">
                 </div>
 
                 <div id="Factura">
