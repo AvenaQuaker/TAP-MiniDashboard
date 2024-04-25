@@ -290,6 +290,18 @@ footer {
   width: -moz-fit-content;
   width: fit-content;
 }
+.modal-content#modalaceptar {
+  width: 50vh;
+}
+.modal-content #CerrarAgradecimiento {
+  font-size: 1rem;
+  align-self: center;
+  background: lightgreen;
+  color: darkgreen;
+  padding: 1rem;
+  border: none;
+  border-radius: 1rem;
+}
 
 .modal div #VentanaModal {
   display: grid;
@@ -368,20 +380,6 @@ footer {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 2;
   animation: aparecer 0.5s ease;
-}
-
-#Mensaje .modal-content {
-  background-color: #fff;
-  position: absolute;
-  text-align: center;
-  top: 50%;
-  left: 50%;
-  height: 30%;
-  width: 30%;
-  transform: translate(-50%, -50%);
-  padding: 40px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
 }
 
 #Error .modal-content {
