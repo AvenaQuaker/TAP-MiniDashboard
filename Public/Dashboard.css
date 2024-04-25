@@ -161,7 +161,7 @@ body {
   flex-direction: column;
   width: 30%;
   align-items: center;
-  margin-top: 3rem;
+  margin-top: 5rem;
 }
 
 .main2 {
@@ -340,7 +340,7 @@ table.dataTable {
   padding: 10px 0;
   font-size: 16px;
   color: #fff;
-  margin-bottom: 30px;
+  margin-bottom: 1.5rem;
   border: none;
   border-bottom: 1px solid #fff;
   outline: none;
@@ -502,4 +502,11 @@ table.dataTable {
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+}
+
+.donut-chart svg text[fill="#000000"] {
+  fill: #CFD8DC;
+}
+.donut-chart svg path[stroke="#ffffff"] {
+  stroke: #263238;
 }/*# sourceMappingURL=Dashboard.css.map */
