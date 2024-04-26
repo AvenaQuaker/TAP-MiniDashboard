@@ -332,13 +332,13 @@ page2.addEventListener('click',()=>{
     VerificarPagina()
 })
 
-//Funcion que recarga la pagina
-function Loading(url){
-    document.querySelector('.loading').style.display = 'flex';
-    setTimeout(function(){
-        window.location.href = url;
-    }, 3000);
-}
+// //Funcion que recarga la pagina
+// function Loading(url){
+//     document.querySelector('.loading').style.display = 'flex';
+//     setTimeout(function(){
+//         window.location.href = url;
+//     }, 3000);
+// }
 
 //Funcion que maneja la notificacion push
 function PushNotification(Tipo,Mensaje) {
@@ -449,80 +449,81 @@ document.querySelectorAll('.cancelbutton').forEach(function(boton){
     })
 })
 
-//Metodo que administra todas las posibles operaciones del CRUD
-document.querySelectorAll('.acceptbutton').forEach(function(boton){
-    boton.addEventListener('click',(e)=>{
-        var tablaFiltra = Filtro.value
-        var Operacion = Accion
-        var widget; 
+// //Metodo que administra todas las posibles operaciones del CRUD
+// document.querySelectorAll('.acceptbutton').forEach(function(boton){
+//     boton.addEventListener('click',(e)=>{
+//         var tablaFiltra = Filtro.value
+//         var Operacion = Accion
+//         var widget; 
 
-        switch(tablaFiltra)
-        {
-            case 'Opcion1':
-                widget = e.target.closest('.formBox')
-                forma = widget.firstElementChild;
+//         switch(tablaFiltra)
+//         {
+//             case 'Opcion1':
+//                 widget = e.target.closest('.formBox')
+//                 forma = widget.firstElementChild;
 
-                if(forma.checkValidity())
-                {
-                    widget.style.opacity = '0'
-                    widget.style.pointerEvents = 'none'
+//                 if(forma.checkValidity())
+//                 {
+//                     widget.style.opacity = '0'
+//                     widget.style.pointerEvents = 'none'
     
-                    switch(Operacion)
-                    {
-                        case 'Insert':
-                            console.log('CLIENTES INSERT')
-                            PushNotification('Success','Operaciones completadas con exito')
-                            Loading('Dashboard.html')
-                            break;
-                        case 'Update':
-                            console.log('CLIENTES UPDATE')
-                            PushNotification('Success','Operaciones completadas con exito')
-                            Loading('Dashboard.html')
-                            break;
-                        case 'Delete':
-                            console.log('CLIENTES DELETE')
-                            PushNotification('Success','Operaciones completadas con exito')
-                            Loading('Dashboard.html')
-                            break;
-                    }
-                }else{
-                    PushNotification('Error','Rellene los datos del formulario')
-                }
-                break;
-            case 'Opcion2':
-                widget = e.target.closest('.formBox')
-                forma = widget.firstElementChild;
+//                     switch(Operacion)
+//                     {
+//                         case 'Insert':
+//                             console.log('CLIENTES INSERT')
+//                             PushNotification('Success','Operaciones completadas con exito')
+//                             Loading('Dashboard.html')
+//                             break;
+//                         case 'Update':
+//                             console.log('CLIENTES UPDATE')
+//                             PushNotification('Success','Operaciones completadas con exito')
+//                             Loading('Dashboard.html')
+//                             break;
+//                         case 'Delete':
+//                             console.log('CLIENTES DELETE')
+//                             PushNotification('Success','Operaciones completadas con exito')
+//                             Loading('Dashboard.html')
+//                             break;
+//                     }
+//                 }else{
+//                     PushNotification('Error','Rellene los datos del formulario')
+//                 }
+//                 break;
+//             case 'Opcion2':
+//                 widget = e.target.closest('.formBox')
+//                 forma = widget.firstElementChild;
 
-                if(forma.checkValidity())
-                {
-                    widget.style.opacity = '0'
-                    widget.style.pointerEvents = 'none'
+//                 if(forma.checkValidity())
+//                 {
+//                     widget.style.opacity = '0'
+//                     widget.style.pointerEvents = 'none'
     
-                    switch(Operacion)
-                    {
-                        case 'Insert':
-                            console.log('CONTRATOS INSERT')
-                            PushNotification('Success','Operaciones completadas con exito')
-                            Loading('Dashboard.html')
-                            break;
-                        case 'Update':
-                            console.log('CONTRATOS UPDATE')
-                            PushNotification('Success','Operaciones completadas con exito')
-                            Loading('Dashboard.html')
-                            break;
-                        case 'Delete':
-                            console.log('CONTRATOS DELETE')
-                            PushNotification('Success','Operaciones completadas con exito')
-                            Loading('Dashboard.html')
-                            break;
-                    }
-                }else{
-                    PushNotification('Error','Rellene los datos del formulario')
-                }
-                break;
-        }
-    })
-})
+//                     switch(Operacion)
+//                     {
+//                         case 'Insert':
+//                             console.log('CONTRATOS INSERT')
+//                             PushNotification('Success','Operaciones completadas con exito')
+//                             Loading('Dashboard.html')
+//                             break;
+//                         case 'Update':
+//                             console.log('CONTRATOS UPDATE')
+//                             PushNotification('Success','Operaciones completadas con exito')
+//                             Loading('Dashboard.html')
+//                             break;
+//                         case 'Delete':
+//                             console.log('CONTRATOS DELETE')
+//                             PushNotification('Success','Operaciones completadas con exito')
+//                             Loading('Dashboard.html')
+//                             break;
+//                     }
+//                 }else{
+//                     PushNotification('Error','Rellene los datos del formulario')
+//                 }
+//                 break;
+//         }
+//     })
+// })
+
 //Evento que muestra el widget de INSERT
 Insert.addEventListener('click',(e)=>{
     var tablaFiltrar = Filtro.value
@@ -811,3 +812,64 @@ config4 = {
     ],
     formatter: function (y, data) { return y + '%' },
 }; Morris.Donut(config4);
+
+
+//Boton de Insertar Cliente
+document.getElementById("acceptbuttonCliente").addEventListener("click", async () => {
+    console.log("clic");
+    const formData = new FormData(document.getElementById("tabla1form"));
+    const jsonData = {};
+
+    for (const [key, value] of formData.entries()) {
+        jsonData[key] = value;
+    }
+
+    console.log("Envio: ", jsonData);
+
+    await fetch('http://localhost:8082/SaveCliente', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(jsonData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("Datos guardados correctamente");
+        } else {
+            alert("Error al guardar los datos: " + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error al enviar la solicitud:', error);
+    });
+});
+
+//Boton de Insertar Contrato
+document.getElementById("acceptbuttonContrato").addEventListener("click", async () => {
+    console.log("clic");
+    const formData = new FormData(document.getElementById("tabla2form"));
+    const jsonData = {};
+
+    for (const [key, value] of formData.entries()) {
+        jsonData[key] = value;
+    }
+
+    console.log("Envio: ", jsonData);
+
+    await fetch('http://localhost:8082/SaveCliente', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(jsonData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("Datos guardados correctamente");
+        } else {
+            alert("Error al guardar los datos: " + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error al enviar la solicitud:', error);
+    });
+});

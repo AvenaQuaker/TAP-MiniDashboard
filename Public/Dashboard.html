@@ -129,10 +129,10 @@
             </div>
         </div>
     </div>
-    <div class="formBox" id="tabla1formbox">
-            <form>
+    <div class="formBox" id="tabla1formbox" >
+            <form id="tabla1form" enctype="application/x-www-form-urlencoded">
             <div class="user-box">
-                <input type="tel" name="ID" required="" id="tabla1id" autocomplete=off>
+                <input type="tel" name="ID_Cliente" required="" id="tabla1id" autocomplete=off>
                 <label>ID</label>
             </div>
             <div class="user-box">
@@ -140,20 +140,20 @@
                 <label>Nombre</label>
             </div>
             <div class="user-box">
-                <input type="tel" name="Edad" required="" id="tabla1edad" autocomplete=off>
+                <input type="tel" name="Telefono" required="" id="tabla1edad" autocomplete=off>
                 <label>Telefono</label>
             </div>
             <div class="user-box">
-                <input type="text" name="Ciudad" required="" id="tabla1ciudad" autocomplete=off>
+                <input type="text" name="Correo_Electronico" required="" id="tabla1ciudad" autocomplete=off>
                 <label>CorreoElectronico</label>
             </div>
             <div class="formbuttons" id="formbuttonstabla1">
-                <button type="button" class="cancelbutton">
+                <button type="submit" class="cancelbutton">
                     <span>
                         CANCEL
                     </span>
                 </button>
-                <button type="button" id="acceptbutton" class="acceptbutton">
+                <button type="submit" id="acceptbuttonCliente" class="acceptbutton">
                     <span>
                         ACCEPT
                     </span>
@@ -161,14 +161,14 @@
             </div>
             </form>
         </div>
-    <div class="formBox" id="tabla2formbox">
-        <form>
+    <div class="formBox" id="tabla2formbox" enctype="application/x-www-form-urlencoded">
+        <form id="tabla2form" enctype="application/x-www-form-urlencoded">
         <div class="user-box">
-            <input type="tel" name="ID" required="" id="tabla2id" autocomplete=off> 
+            <input type="tel" name="ID_Contrato" required="" id="tabla2id" autocomplete=off> 
             <label>ID</label>
         </div>
         <div class="user-box">
-            <input type="text" name="Cliente" required="" id="tabla2cliente" autocomplete=off>
+            <input type="text" name="ID_Cliente" required="" id="tabla2cliente" autocomplete=off>
             <label>Cliente</label>
         </div>
         <div class="user-box">
@@ -176,7 +176,7 @@
             <label>Fecha</label>
         </div>
         <div class="user-box">
-            <input type="text" name="MetodoPago" required="" id="tabla2metodopago" autocomplete=off>
+            <input type="text" name="Metodo_De_Pago" required="" id="tabla2metodopago" autocomplete=off>
             <label>MetodoDePago</label>
         </div>
         <div class="user-box">
@@ -184,16 +184,16 @@
             <label>Anticipo</label>
         </div>
         <div class="user-box">
-            <input type="tel" name="MontoFinal" required="" id="tabla2montofinal" autocomplete=off>
+            <input type="tel" name="Monto_Final" required="" id="tabla2montofinal" autocomplete=off>
             <label>MontoFinal</label>
         </div>
         <div class="formbuttons" id="formbuttonstabla2">
-            <button type="button" class="cancelbutton">
+            <button type="submit" class="cancelbutton">
                 <span>
                     CANCEL
                 </span>
             </button>
-            <button type="button" id="acceptbutton" class="acceptbutton">
+            <button type="submit" id="acceptbuttonContrato" class="acceptbutton">
                 <span>
                     ACCEPT
                 </span>

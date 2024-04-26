@@ -98,6 +98,40 @@ app.post('/SaveData', (req, res) => {
 
 
 //Ruta para manejar la solicitud POST de un cliente
+app.post('/SaveCliente', (req, res) => {
+    console.log("Recibo: ", req.body);
+    const { Nombre, Telefono, Correo_Electronico } = req.body;
+
+    //Inserta los datos del cliente en la tabla table_cliente
+    const sqlCliente = 'INSERT INTO table_cliente (Nombre, Telefono, Correo_Electronico) VALUES (?, ?, ?)';
+    connection.query(sqlCliente, [Nombre, Telefono, Correo_Electronico], (err, result) => {
+        if (err) {
+            console.error('Error al guardar los datos del cliente:', err);
+            res.status(500).json({ success: false, message: 'Error al guardar los datos del cliente en la base de datos' });
+            return;
+        }
+        console.log('Datos del cliente guardados en la base de datos');
+        res.status(200).json({ success: true, message: 'Datos guardados correctamente' });
+    });
+});
+
+//Ruta para manejar la solicitud POST de un contrato
+app.post('/SaveContrato', (req, res) => {
+    console.log("Recibo: ", req.body);
+    const { ID_Cliente, Fecha, Metodo_De_Pago, Anticipo, Monto_Final } = req.body;
+
+    //Inserta los datos del contrato en la tabla table_contrato
+    const sqlContrato = 'INSERT INTO table_contrato (ID_Cliente, Fecha, Metodo_De_Pago, Anticipo, Monto_Final) VALUES (?, ?, ?, ?, ?)';
+    connection.query(sqlContrato, [ID_Cliente, Fecha, Metodo_De_Pago, Anticipo, Monto_Final], (err, result) => {
+        if (err) {
+            console.error('Error al guardar los datos del contrato:', err);
+            res.status(500).json({ success: false, message: 'Error al guardar los datos del contrato en la base de datos' });
+            return;
+        }
+        console.log('Datos del contrato guardados en la base de datos');
+        res.status(200).json({ success: true, message: 'Datos guardados correctamente' });
+    });
+});
 
 // Escucha en el puerto 8082
 app.listen(8082, () => {
