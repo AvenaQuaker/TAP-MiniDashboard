@@ -377,6 +377,9 @@ config4 = {
 }; Morris.Donut(config4);
 
 let table1 = new DataTable('#tabla1', {
+    paging: false,
+    searching:false,
+    ordering:false,
     data: array1,
     columns: [
         { data: 'ID' },
@@ -387,6 +390,9 @@ let table1 = new DataTable('#tabla1', {
 })
 
 let table2 = new DataTable('#tabla2', {
+    paging: false,
+    searching:false,
+    ordering:false,
     data: array2,
     columns: [
         { data: 'ID' },

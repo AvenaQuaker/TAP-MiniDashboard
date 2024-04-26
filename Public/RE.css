@@ -45,7 +45,9 @@ h2 {
 }
 
 label {
-  align-items: start;
+  font-size: 2rem;
+  display: flex;
+  align-self: center;
   margin-top: 5rem;
 }
 
