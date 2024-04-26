@@ -3,6 +3,7 @@ let objetoTabla = {}
 let Page = 1
 let Accion;
 // let array1 = [
+    
 //         {
 //         ID: 1,
 //         Nombre: "Juan Pérez",
@@ -449,80 +450,80 @@ document.querySelectorAll('.cancelbutton').forEach(function(boton){
     })
 })
 
-// //Metodo que administra todas las posibles operaciones del CRUD
-// document.querySelectorAll('.acceptbutton').forEach(function(boton){
-//     boton.addEventListener('click',(e)=>{
-//         var tablaFiltra = Filtro.value
-//         var Operacion = Accion
-//         var widget; 
+//Metodo que administra todas las posibles operaciones del CRUD
+document.querySelectorAll('.acceptbutton').forEach(function(boton){
+    boton.addEventListener('click',(e)=>{
+        var tablaFiltra = Filtro.value
+        var Operacion = Accion
+        var widget; 
 
-//         switch(tablaFiltra)
-//         {
-//             case 'Opcion1':
-//                 widget = e.target.closest('.formBox')
-//                 forma = widget.firstElementChild;
+        switch(tablaFiltra)
+        {
+            case 'Opcion1':
+                widget = e.target.closest('.formBox')
+                forma = widget.firstElementChild;
 
-//                 if(forma.checkValidity())
-//                 {
-//                     widget.style.opacity = '0'
-//                     widget.style.pointerEvents = 'none'
-    
-//                     switch(Operacion)
-//                     {
-//                         case 'Insert':
-//                             console.log('CLIENTES INSERT')
-//                             PushNotification('Success','Operaciones completadas con exito')
-//                             Loading('Dashboard.html')
-//                             break;
-//                         case 'Update':
-//                             console.log('CLIENTES UPDATE')
-//                             PushNotification('Success','Operaciones completadas con exito')
-//                             Loading('Dashboard.html')
-//                             break;
-//                         case 'Delete':
-//                             console.log('CLIENTES DELETE')
-//                             PushNotification('Success','Operaciones completadas con exito')
-//                             Loading('Dashboard.html')
-//                             break;
-//                     }
-//                 }else{
-//                     PushNotification('Error','Rellene los datos del formulario')
-//                 }
-//                 break;
-//             case 'Opcion2':
-//                 widget = e.target.closest('.formBox')
-//                 forma = widget.firstElementChild;
+                if(forma.checkValidity())
+                {
+                    widget.style.opacity = '0'
+                    widget.style.pointerEvents = 'none'
 
-//                 if(forma.checkValidity())
-//                 {
-//                     widget.style.opacity = '0'
-//                     widget.style.pointerEvents = 'none'
-    
-//                     switch(Operacion)
-//                     {
-//                         case 'Insert':
-//                             console.log('CONTRATOS INSERT')
-//                             PushNotification('Success','Operaciones completadas con exito')
-//                             Loading('Dashboard.html')
-//                             break;
-//                         case 'Update':
-//                             console.log('CONTRATOS UPDATE')
-//                             PushNotification('Success','Operaciones completadas con exito')
-//                             Loading('Dashboard.html')
-//                             break;
-//                         case 'Delete':
-//                             console.log('CONTRATOS DELETE')
-//                             PushNotification('Success','Operaciones completadas con exito')
-//                             Loading('Dashboard.html')
-//                             break;
-//                     }
-//                 }else{
-//                     PushNotification('Error','Rellene los datos del formulario')
-//                 }
-//                 break;
-//         }
-//     })
-// })
+                    switch(Operacion)
+                    {
+                        case 'Insert':
+                            console.log('CLIENTES INSERT')
+                            PushNotification('Success','Operaciones completadas con exito')
+                            Loading('Dashboard.html')
+                            break;
+                        case 'Update':
+                            console.log('CLIENTES UPDATE')
+                            PushNotification('Success','Operaciones completadas con exito')
+                            Loading('Dashboard.html')
+                            break;
+                        case 'Delete':
+                            console.log('CLIENTES DELETE')
+                            PushNotification('Success','Operaciones completadas con exito')
+                            Loading('Dashboard.html')
+                            break;
+                    }
+                }else{
+                    PushNotification('Error','Rellene los datos del formulario')
+                }
+                break;
+            case 'Opcion2':
+                widget = e.target.closest('.formBox')
+                forma = widget.firstElementChild;
+
+                if(forma.checkValidity())
+                {
+                    widget.style.opacity = '0'
+                    widget.style.pointerEvents = 'none'
+
+                    switch(Operacion)
+                    {
+                        case 'Insert':
+                            console.log('CONTRATOS INSERT')
+                            PushNotification('Success','Operaciones completadas con exito')
+                            Loading('Dashboard.html')
+                            break;
+                        case 'Update':
+                            console.log('CONTRATOS UPDATE')
+                            PushNotification('Success','Operaciones completadas con exito')
+                            Loading('Dashboard.html')
+                            break;
+                        case 'Delete':
+                            console.log('CONTRATOS DELETE')
+                            PushNotification('Success','Operaciones completadas con exito')
+                            Loading('Dashboard.html')
+                            break;
+                    }
+                }else{
+                    PushNotification('Error','Rellene los datos del formulario')
+                }
+                break;
+        }
+    })
+})
 
 //Evento que muestra el widget de INSERT
 Insert.addEventListener('click',(e)=>{
