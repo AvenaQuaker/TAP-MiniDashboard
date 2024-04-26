@@ -725,6 +725,7 @@ $.ajax({
 
 //Generacion de las Graficas mediante los datos (data)
 config1 = {
+    hideHover: 'true',
     resize:true,
     element: 'line-chart',
     data: [
@@ -749,6 +750,7 @@ config1 = {
 }; Morris.Line(config1);
 
 config2 = {
+    hideHover: 'true',
     resize:true,
     element: 'area-chart',
     data: [
@@ -774,6 +776,7 @@ config2 = {
 
 
 config3 = {
+    hideHover: 'true',
     resize:true,
     element: 'bar-chart',
     data: [
@@ -801,6 +804,7 @@ config3 = {
 
 
 config4 = {
+    hideHover: 'true',
     resize:true,
     element: 'donut-chart',
     data: [

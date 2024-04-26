@@ -44,6 +44,30 @@ h2 {
   max-height: 250px;
 }
 
-#Chart {
+label {
   align-items: start;
+  margin-top: 5rem;
+}
+
+#lblinicial {
+  margin-top: 0px;
+}
+
+.chartinfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.chartinfo label {
+  margin-top: 0px;
+}
+
+.chartblock {
+  flex: 1;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  border-radius: 1rem;
 }/*# sourceMappingURL=RE.css.map */
