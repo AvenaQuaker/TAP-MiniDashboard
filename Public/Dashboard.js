@@ -681,6 +681,10 @@ $.ajax({
     success: function(data) {
         //Creacion de la tabla
         let table1 = new DataTable('#tabla1', {
+            select: true,
+            select:{
+                style: 'single'
+            },
             data: data,
             columns: [
                 { data: 'ID_Cliente' },
@@ -704,6 +708,10 @@ $.ajax({
     success: function(data) {
         //Creacion de la tabla
         let table1 = new DataTable('#tabla2', {
+            select: true,
+            select:{
+                style: 'single'
+            },
             data: data,
             columns: [
                 { data: 'ID_Contrato' },
