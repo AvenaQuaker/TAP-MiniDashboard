@@ -639,8 +639,7 @@ Insert.addEventListener('click', (e) => {
 
             tabla1formbox.style.opacity = '1';
             tabla1formbox.style.pointerEvents = 'auto';
-            tabla1id.disabled = true;
-            tabla1id.style.color = 'transparent'
+            tabla1id.style.pointerEvents = 'none'
             break;
         case 'Opcion2':
             clickedBox = e.target
@@ -650,8 +649,7 @@ Insert.addEventListener('click', (e) => {
 
             tabla2formbox.style.opacity = '1';
             tabla2formbox.style.pointerEvents = 'auto';
-            tabla2id.disabled = true;
-            tabla2id.style.color = 'transparent'
+            tabla2id.style.pointerEvents = 'none'
             break;
     }
 })
@@ -671,8 +669,7 @@ Update.addEventListener('click', (e) => {
 
             tabla1formbox.style.opacity = '1';
             tabla1formbox.style.pointerEvents = 'auto';
-            tabla1id.disabled = true;
-            tabla1id.style.color = 'transparent'
+            tabla1id.style.pointerEvents = 'none'
             break;
         case 'Opcion2':
             clickedBox = e.target
@@ -682,8 +679,7 @@ Update.addEventListener('click', (e) => {
 
             tabla2formbox.style.opacity = '1';
             tabla2formbox.style.pointerEvents = 'auto';
-            tabla2id.disabled = true;
-            tabla2id.style.color = 'transparent'
+            tabla2id.style.pointerEvents = 'none'
             break;
     }
 })
