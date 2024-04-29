@@ -473,7 +473,7 @@ document.querySelectorAll('.acceptbutton').forEach(function (boton) {
                     widget.style.opacity = '0'
                     widget.style.pointerEvents = 'none'
 
-                
+
 
                     switch (Operacion) {
                         case 'Insert':
@@ -573,6 +573,11 @@ document.querySelectorAll('.acceptbutton').forEach(function (boton) {
                 forma = widget.firstElementChild;
 
                 if (forma.checkValidity()) {
+                    let formData = new FormData(forma);
+                    let jsonData = {};
+                    for (const [key, value] of formData.entries()) {
+                        jsonData[key] = value;
+                    }
                     widget.style.opacity = '0'
                     widget.style.pointerEvents = 'none'
 
@@ -584,7 +589,7 @@ document.querySelectorAll('.acceptbutton').forEach(function (boton) {
 
                             console.log("Envio: ", jsonData);
 
-                            await fetch('http://localhost:8082/SaveCliente', {
+                            await fetch('http://localhost:8082/SaveContrato', {
                                 method: 'POST',
                                 headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify(jsonData)
@@ -606,6 +611,27 @@ document.querySelectorAll('.acceptbutton').forEach(function (boton) {
                             break;
                         case 'Update':
                             console.log('CONTRATOS UPDATE')
+
+                            //Update
+                            console.log("Envio: ", jsonData);
+
+                            await fetch('http://localhost:8082/UpdateContrato', {
+                                method: 'PUT',
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify(jsonData)
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        alert("Datos Actualizar correctamente");
+                                    } else {
+                                        alert("Error al Actualizar los datos: " + data.message);
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error al enviar la solicitud:', error);
+                                });
+
                             PushNotification('Success', 'Operaciones completadas con exito')
                             Loading('Dashboard.html')
                             break;

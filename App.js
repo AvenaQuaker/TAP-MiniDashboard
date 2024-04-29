@@ -50,7 +50,7 @@ app.get('/GetClientes', (req, res) => {
       res.json(results);
     });
   });
-  
+
 
 //Ruta para extraer todos los contratos de la tabla contratos
 app.get('/GetContratos', (req, res) => {
@@ -160,9 +160,52 @@ app.put('/UpdateContrato', (req, res) => {
     console.log("Recibo: ", req.body);
     const { ID_Contrato, ID_Cliente, Fecha, Metodo_De_Pago, Anticipo, Monto_Final } = req.body;
 
+    const sqlid = 'SELECT table_cliente.ID_Cliente FROM table_cliente JOIN table_contrato on table_contrato.ID_Cliente = ?'
+    ID = connection.query(sqlid, [ID_Cliente]);
+    console.log(ID);
+
     // Actualiza los datos del contrato en la tabla table_contrato
     const sqlCliente = 'UPDATE table_contrato SET ID_Cliente = ?, Fecha = ?, Metodo_De_Pago = ?, Anticipo = ?, Monto_Final = ? WHERE ID_Contrato = ?';
-    connection.query(sqlCliente, [ID_Cliente, Fecha, Metodo_De_Pago, Anticipo, Monto_Final, ID_Contrato], (err, result) => {
+    connection.query(sqlCliente, [ID, Fecha, Metodo_De_Pago, Anticipo, Monto_Final, ID_Contrato], (err, resultCliente) => {
+        if (err) {
+            console.error('Error al Actualizar los datos del contrato:', err);
+            res.status(500).json({ success: false, message: 'Error al guardar los datos del contrato en la base de datos' });
+            return;
+        }
+
+        console.log('Datos del contrato Actualizados en la base de datos');
+        res.status(200).json({ success: true, message: 'Datos guardados correctamente' });
+    });
+});
+
+
+//Ruta para Eliminar un Cliente
+app.put('/DeleteCliente', (req, res) => {
+    console.log("Recibo: ", req.body);
+    const { ID_Cliente } = req.body;
+
+    // Actualiza los datos del cliente en la tabla table_cliente
+    const sqlCliente = 'DELETE FROM table_cliente WHERE ID_Cliente = ?';
+    connection.query(sqlCliente, [ID_Cliente], (err, result) => {
+        if (err) {
+            console.error('Error al Borrar los datos del cliente:', err);
+            res.status(500).json({ success: false, message: 'Error al Borrar los datos del cliente en la base de datos' });
+            return;
+        }
+        console.log('Datos del cliente Borrados en la base de datos');
+        res.status(200).json({ success: true, message: 'Datos Borrados correctamente' });
+    });
+});
+
+
+//Ruta para Eliminar un Contrato
+app.put('/DeleteContrato', (req, res) => {
+    console.log("Recibo: ", req.body);
+    const { ID_Contrato } = req.body;
+
+    // Actualiza los datos del contrato en la tabla table_contrato
+    const sqlCliente = 'DELETE FROM table_contrato WHERE ID_Contrato = ?';
+    connection.query(sqlCliente, [ID_Contrato], (err, result) => {
         if (err) {
             console.error('Error al Actualizar los datos del contrato:', err);
             res.status(500).json({ success: false, message: 'Error al guardar los datos del contrato en la base de datos' });
@@ -172,7 +215,6 @@ app.put('/UpdateContrato', (req, res) => {
         res.status(200).json({ success: true, message: 'Datos guardados correctamente' });
     });
 });
-
 
 
 
