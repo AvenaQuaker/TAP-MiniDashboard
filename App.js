@@ -50,6 +50,7 @@ app.get('/GetClientes', (req, res) => {
       res.json(results);
     });
   });
+  
 
 //Ruta para extraer todos los contratos de la tabla contratos
 app.get('/GetContratos', (req, res) => {
@@ -115,6 +116,7 @@ app.post('/SaveCliente', (req, res) => {
     });
 });
 
+
 //Ruta para manejar la solicitud POST de un contrato
 app.post('/SaveContrato', (req, res) => {
     console.log("Recibo: ", req.body);
@@ -132,6 +134,7 @@ app.post('/SaveContrato', (req, res) => {
         res.status(200).json({ success: true, message: 'Datos guardados correctamente' });
     });
 });
+
 
 //Ruta para Actualizar un Cliente
 app.put('/UpdateCliente', (req, res) => {
@@ -153,6 +156,25 @@ app.put('/UpdateCliente', (req, res) => {
 
 
 //Ruta para Actualizar un Contrato
+app.put('/UpdateContrato', (req, res) => {
+    console.log("Recibo: ", req.body);
+    const { ID_Contrato, ID_Cliente, Fecha, Metodo_De_Pago, Anticipo, Monto_Final } = req.body;
+
+    // Actualiza los datos del contrato en la tabla table_contrato
+    const sqlCliente = 'UPDATE table_contrato SET ID_Cliente = ?, Fecha = ?, Metodo_De_Pago = ?, Anticipo = ?, Monto_Final = ? WHERE ID_Contrato = ?';
+    connection.query(sqlCliente, [ID_Cliente, Fecha, Metodo_De_Pago, Anticipo, Monto_Final, ID_Contrato], (err, result) => {
+        if (err) {
+            console.error('Error al Actualizar los datos del contrato:', err);
+            res.status(500).json({ success: false, message: 'Error al guardar los datos del contrato en la base de datos' });
+            return;
+        }
+        console.log('Datos del contrato Actualizados en la base de datos');
+        res.status(200).json({ success: true, message: 'Datos guardados correctamente' });
+    });
+});
+
+
+
 
 // Escucha en el puerto 8082
 app.listen(8082, () => {
