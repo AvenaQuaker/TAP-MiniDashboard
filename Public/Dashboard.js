@@ -459,11 +459,12 @@ document.querySelectorAll('.acceptbutton').forEach(function (boton) {
                 forma = widget.firstElementChild;
 
                 if (forma.checkValidity()) {
-                    let formData = new FormData(document.getElementById("tabla1form"));
+                    //let formData = new FormData(document.getElementById("tabla1form"));
+                    let formData = new FormData(forma);
                     let jsonData = {};
                     for (const [key, value] of formData.entries()) {
                         jsonData[key] = value;
-                   }
+                    }
                     widget.style.opacity = '0'
                     widget.style.pointerEvents = 'none'
 
@@ -525,9 +526,31 @@ document.querySelectorAll('.acceptbutton').forEach(function (boton) {
                             PushNotification('Success', 'Operaciones completadas con exito')
                             Loading('Dashboard.html')
                             break;
-                            
+
                         case 'Delete':
                             console.log('CLIENTES DELETE')
+
+                            //DELETE
+
+                            console.log("Envio: ", jsonData);
+
+                            await fetch('http://localhost:8082/DeleteCliente', {
+                                method: 'DELETE',
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify(jsonData)
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        alert("Datos Borrados correctamente");
+                                    } else {
+                                        alert("Error al Borrar los datos: " + data.message);
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error al enviar la solicitud:', error);
+                                });
+
                             PushNotification('Success', 'Operaciones completadas con exito')
                             Loading('Dashboard.html')
                             break;
