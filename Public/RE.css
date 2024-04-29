@@ -59,10 +59,12 @@ label {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 .chartinfo label {
+  font-size: 1rem;
   margin-top: 0px;
+  margin-bottom: 2rem;
 }
 
 .chartblock {
@@ -77,4 +79,9 @@ label {
 .cell-border {
   background: #282535;
   color: rgb(185, 185, 185);
+}
+
+.subtitulo {
+  font-size: 2rem;
+  margin-bottom: 2rem;
 }/*# sourceMappingURL=RE.css.map */
