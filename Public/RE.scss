@@ -70,10 +70,12 @@ label {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top:1rem;
+    margin-top:2rem;
 
     label{
+        font-size: 1rem;
         margin-top: 0px;
+        margin-bottom: 2rem;
     }
 }
 
@@ -84,10 +86,14 @@ label {
     margin-right: 1rem;
     margin-left: 1rem;
     border-radius: 1rem;
-    margin-top: 1.5rem;
 }
 
 .cell-border {
     background: #282535;
     color: rgb(185, 185, 185);
+}
+
+.subtitulo {
+    font-size: 2rem;
+    margin-bottom: 2rem;
 }
