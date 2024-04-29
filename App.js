@@ -133,6 +133,27 @@ app.post('/SaveContrato', (req, res) => {
     });
 });
 
+//Ruta para Actualizar un Cliente
+app.put('/UpdateCliente', (req, res) => {
+    console.log("Recibo: ", req.body);
+    const { ID_Cliente, Nombre, Telefono, Correo_Electronico } = req.body;
+
+    // Actualiza los datos del cliente en la tabla table_cliente
+    const sqlCliente = 'UPDATE table_cliente SET Nombre = ?, Telefono = ?, Correo_Electronico = ? WHERE ID_Cliente = ?';
+    connection.query(sqlCliente, [Nombre, Telefono, Correo_Electronico, ID_Cliente], (err, result) => {
+        if (err) {
+            console.error('Error al Actualizar los datos del cliente:', err);
+            res.status(500).json({ success: false, message: 'Error al guardar los datos del cliente en la base de datos' });
+            return;
+        }
+        console.log('Datos del cliente Actualizados en la base de datos');
+        res.status(200).json({ success: true, message: 'Datos guardados correctamente' });
+    });
+});
+
+
+//Ruta para Actualizar un Contrato
+
 // Escucha en el puerto 8082
 app.listen(8082, () => {
     console.log('Servidor Express escuchando en el puerto 8082');

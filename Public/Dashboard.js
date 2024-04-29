@@ -3,7 +3,7 @@ let objetoTabla = {}
 let Page = 1
 let Accion;
 // let array1 = [
-    
+
 //         {
 //         ID: 1,
 //         Nombre: "Juan Pérez",
@@ -323,12 +323,12 @@ let buttonPDF = document.getElementById('PDF')
 let errorformbox = document.getElementById('Error')
 
 //Eventos
-page1.addEventListener('click',()=>{
+page1.addEventListener('click', () => {
     Page = 1
     VerificarPagina()
 })
 
-page2.addEventListener('click',()=>{
+page2.addEventListener('click', () => {
     Page = 2
     VerificarPagina()
 })
@@ -342,38 +342,36 @@ page2.addEventListener('click',()=>{
 // }
 
 //Funcion que maneja la notificacion push
-function PushNotification(Tipo,Mensaje) {
-    switch(Tipo){
+function PushNotification(Tipo, Mensaje) {
+    switch (Tipo) {
         case 'Error':
             errorformbox.style.background = 'linear-gradient(90deg,#ac0000,#a83301)'
             errorformbox.textContent = Mensaje
             errorformbox.style.opacity = '1';
-            setTimeout(function(){
+            setTimeout(function () {
                 errorformbox.style.opacity = '0'
-            },3000)
+            }, 3000)
             break;
         case 'Success':
             errorformbox.style.background = 'linear-gradient(90deg,#00ac00,#01a85a)'
             errorformbox.textContent = Mensaje
             errorformbox.style.opacity = '1';
-            setTimeout(function(){
+            setTimeout(function () {
                 errorformbox.style.opacity = '0'
-            },3000)
+            }, 3000)
             break;
     }
 }
 
 //Funcion invocada al inicio del programa
-document.addEventListener('DOMContentLoaded',()=>{
+document.addEventListener('DOMContentLoaded', () => {
     VerificarPagina()
     Filtrar()
 })
 
 //Funcion que controla la vista de la barra de navegacion
-function VerificarPagina()
-{
-    switch(Page)
-    {
+function VerificarPagina() {
+    switch (Page) {
         case 1:
             pageIMG1.style.background = 'orange';
             pimg1.style.filter = 'invert(1)'
@@ -415,11 +413,9 @@ function VerificarPagina()
     }
 }
 //Funcion que muestra la tabla deseada 
-function Filtrar()
-{
+function Filtrar() {
     var tablaFiltrar = Filtro.value
-    switch(tablaFiltrar)
-    {
+    switch (tablaFiltrar) {
         case 'Opcion1':
             document.getElementById('tabla1_wrapper').style.display = 'block';
             document.getElementById('tabla2_wrapper').style.display = 'none';
@@ -442,8 +438,8 @@ function Filtrar()
 }
 
 //Evento que cierra el widget
-document.querySelectorAll('.cancelbutton').forEach(function(boton){
-    boton.addEventListener('click',(e)=>{
+document.querySelectorAll('.cancelbutton').forEach(function (boton) {
+    boton.addEventListener('click', (e) => {
         const widget = e.target.closest('.formBox')
         widget.style.opacity = '0'
         widget.style.pointerEvents = 'none'
@@ -451,74 +447,144 @@ document.querySelectorAll('.cancelbutton').forEach(function(boton){
 })
 
 //Metodo que administra todas las posibles operaciones del CRUD
-document.querySelectorAll('.acceptbutton').forEach(function(boton){
-    boton.addEventListener('click',(e)=>{
+document.querySelectorAll('.acceptbutton').forEach(function (boton) {
+    boton.addEventListener('click', async (e) => {
         var tablaFiltra = Filtro.value
         var Operacion = Accion
-        var widget; 
+        var widget;
 
-        switch(tablaFiltra)
-        {
+        switch (tablaFiltra) {
             case 'Opcion1':
                 widget = e.target.closest('.formBox')
                 forma = widget.firstElementChild;
 
-                if(forma.checkValidity())
-                {
+                if (forma.checkValidity()) {
+                    let formData = new FormData(document.getElementById("tabla1form"));
+                    let jsonData = {};
+                    for (const [key, value] of formData.entries()) {
+                        jsonData[key] = value;
+                   }
                     widget.style.opacity = '0'
                     widget.style.pointerEvents = 'none'
 
-                    switch(Operacion)
-                    {
+                
+
+                    switch (Operacion) {
                         case 'Insert':
                             console.log('CLIENTES INSERT')
-                            PushNotification('Success','Operaciones completadas con exito')
+
+                            //Insertar
+
+                            console.log("Envio: ", jsonData);
+
+                            await fetch('http://localhost:8082/SaveCliente', {
+                                method: 'POST',
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify(jsonData)
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        alert("Datos guardados correctamente");
+                                    } else {
+                                        alert("Error al guardar los datos: " + data.message);
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error al enviar la solicitud:', error);
+                                });
+
+                            PushNotification('Success', 'Operaciones completadas con exito')
                             Loading('Dashboard.html')
                             break;
+
                         case 'Update':
                             console.log('CLIENTES UPDATE')
-                            PushNotification('Success','Operaciones completadas con exito')
+
+                            //Update
+
+                            console.log("Envio: ", jsonData);
+
+                            await fetch('http://localhost:8082/UpdateCliente', {
+                                method: 'PUT',
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify(jsonData)
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        alert("Datos Actualizar correctamente");
+                                    } else {
+                                        alert("Error al Actualizar los datos: " + data.message);
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error al enviar la solicitud:', error);
+                                });
+
+                            PushNotification('Success', 'Operaciones completadas con exito')
                             Loading('Dashboard.html')
                             break;
+                            
                         case 'Delete':
                             console.log('CLIENTES DELETE')
-                            PushNotification('Success','Operaciones completadas con exito')
+                            PushNotification('Success', 'Operaciones completadas con exito')
                             Loading('Dashboard.html')
                             break;
                     }
-                }else{
-                    PushNotification('Error','Rellene los datos del formulario')
+                } else {
+                    PushNotification('Error', 'Rellene los datos del formulario')
                 }
                 break;
             case 'Opcion2':
                 widget = e.target.closest('.formBox')
                 forma = widget.firstElementChild;
 
-                if(forma.checkValidity())
-                {
+                if (forma.checkValidity()) {
                     widget.style.opacity = '0'
                     widget.style.pointerEvents = 'none'
 
-                    switch(Operacion)
-                    {
+                    switch (Operacion) {
                         case 'Insert':
                             console.log('CONTRATOS INSERT')
-                            PushNotification('Success','Operaciones completadas con exito')
+
+                            //Insert
+
+                            console.log("Envio: ", jsonData);
+
+                            await fetch('http://localhost:8082/SaveCliente', {
+                                method: 'POST',
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify(jsonData)
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        alert("Datos guardados correctamente");
+                                    } else {
+                                        alert("Error al guardar los datos: " + data.message);
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error al enviar la solicitud:', error);
+                                });
+
+                            PushNotification('Success', 'Operaciones completadas con exito')
                             Loading('Dashboard.html')
                             break;
                         case 'Update':
                             console.log('CONTRATOS UPDATE')
-                            PushNotification('Success','Operaciones completadas con exito')
+                            PushNotification('Success', 'Operaciones completadas con exito')
                             Loading('Dashboard.html')
                             break;
                         case 'Delete':
                             console.log('CONTRATOS DELETE')
-                            PushNotification('Success','Operaciones completadas con exito')
+                            PushNotification('Success', 'Operaciones completadas con exito')
                             Loading('Dashboard.html')
                             break;
                     }
-                }else{
-                    PushNotification('Error','Rellene los datos del formulario')
+                } else {
+                    PushNotification('Error', 'Rellene los datos del formulario')
                 }
                 break;
         }
@@ -526,19 +592,18 @@ document.querySelectorAll('.acceptbutton').forEach(function(boton){
 })
 
 //Evento que muestra el widget de INSERT
-Insert.addEventListener('click',(e)=>{
+Insert.addEventListener('click', (e) => {
     var tablaFiltrar = Filtro.value
     var clickedBox;
     var newPosition
     Accion = 'Insert'
 
-    switch(tablaFiltrar)
-    {
+    switch (tablaFiltrar) {
         case 'Opcion1':
             clickedBox = e.target
             newPosition = clickedBox.getBoundingClientRect();
-            tabla1formbox.style.top = `${newPosition.bottom*1}px`;
-            tabla1formbox.style.left = `${newPosition.right*0.75}px`;
+            tabla1formbox.style.top = `${newPosition.bottom * 1}px`;
+            tabla1formbox.style.left = `${newPosition.right * 0.75}px`;
 
             tabla1formbox.style.opacity = '1';
             tabla1formbox.style.pointerEvents = 'auto';
@@ -548,8 +613,8 @@ Insert.addEventListener('click',(e)=>{
         case 'Opcion2':
             clickedBox = e.target
             newPosition = clickedBox.getBoundingClientRect();
-            tabla2formbox.style.top = `${newPosition.bottom*1}px`;
-            tabla2formbox.style.left = `${newPosition.right*0.75}px`;
+            tabla2formbox.style.top = `${newPosition.bottom * 1}px`;
+            tabla2formbox.style.left = `${newPosition.right * 0.75}px`;
 
             tabla2formbox.style.opacity = '1';
             tabla2formbox.style.pointerEvents = 'auto';
@@ -559,74 +624,72 @@ Insert.addEventListener('click',(e)=>{
     }
 })
 //Evento que muestra el widget de UPDATE
-Update.addEventListener('click',(e)=>{
+Update.addEventListener('click', (e) => {
     var tablaFiltrar = Filtro.value
     var clickedBox;
     var newPosition
     Accion = 'Update'
 
-    switch(tablaFiltrar)
-    {
+    switch (tablaFiltrar) {
         case 'Opcion1':
             clickedBox = e.target
             newPosition = clickedBox.getBoundingClientRect();
-            tabla1formbox.style.top = `${newPosition.bottom*1}px`;
-            tabla1formbox.style.left = `${newPosition.right*0.75}px`;
+            tabla1formbox.style.top = `${newPosition.bottom * 1}px`;
+            tabla1formbox.style.left = `${newPosition.right * 0.75}px`;
 
             tabla1formbox.style.opacity = '1';
             tabla1formbox.style.pointerEvents = 'auto';
             tabla1id.disabled = true;
-            tabla1id.style.color = 'transparent'            
+            tabla1id.style.color = 'transparent'
             break;
         case 'Opcion2':
             clickedBox = e.target
             newPosition = clickedBox.getBoundingClientRect();
-            tabla2formbox.style.top = `${newPosition.bottom*1}px`;
-            tabla2formbox.style.left = `${newPosition.right*0.75}px`;
+            tabla2formbox.style.top = `${newPosition.bottom * 1}px`;
+            tabla2formbox.style.left = `${newPosition.right * 0.75}px`;
 
             tabla2formbox.style.opacity = '1';
             tabla2formbox.style.pointerEvents = 'auto';
             tabla2id.disabled = true;
-            tabla2id.style.color = 'transparent'     
+            tabla2id.style.color = 'transparent'
             break;
     }
 })
 //Evento que muestra el widget de DELETE
-Delete.addEventListener('click',(e)=>{
+Delete.addEventListener('click', (e) => {
     var tablaFiltrar = Filtro.value
     var clickedBox;
     var newPosition
     Accion = 'Delete'
 
-    switch(tablaFiltrar)
-    {
+    switch (tablaFiltrar) {
         case 'Opcion1':
             clickedBox = e.target
             newPosition = clickedBox.getBoundingClientRect();
-            tabla1formbox.style.top = `${newPosition.bottom*1}px`;
-            tabla1formbox.style.left = `${newPosition.right*0.75}px`;
+            tabla1formbox.style.top = `${newPosition.bottom * 1}px`;
+            tabla1formbox.style.left = `${newPosition.right * 0.75}px`;
 
             tabla1formbox.style.opacity = '1';
             tabla1formbox.style.pointerEvents = 'none'
-            document.querySelectorAll('.cancelbutton').forEach(function(boton){
+            document.querySelectorAll('.cancelbutton').forEach(function (boton) {
                 boton.style.pointerEvents = 'auto'
             })
-            document.querySelectorAll('.acceptbutton').forEach(function(boton){
+            document.querySelectorAll('.acceptbutton').forEach(function (boton) {
                 boton.style.pointerEvents = 'auto'
             })
             break;
         case 'Opcion2':
             clickedBox = e.target
             newPosition = clickedBox.getBoundingClientRect();
-            tabla2formbox.style.top = `${newPosition.bottom*1}px`;
-            tabla2formbox.style.left = `${newPosition.right*0.75}px`;
+            tabla2formbox.style.top = `${newPosition.bottom * 1}px`;
+            tabla2formbox.style.left = `${newPosition.right * 0.75}px`;
 
             tabla2formbox.style.opacity = '1';
             tabla2formbox.style.pointerEvents = 'none'
-            document.querySelectorAll('.cancelbutton').forEach(function(boton){
+            document.querySelectorAll('.cancelbutton').forEach(function (boton) {
                 boton.style.pointerEvents = 'auto'
             })
-            document.querySelectorAll('.acceptbutton').forEach(function(boton){
+            document.querySelectorAll('.acceptbutton').forEach(function (boton) {
                 boton.style.pointerEvents = 'auto'
             })
             break;
@@ -635,14 +698,14 @@ Delete.addEventListener('click',(e)=>{
 
 //Obtencion de los datos de una fila para el widget
 let tablaDatos1 = document.getElementById("tabla1");
-tablaDatos1.addEventListener('click', function(evento) {
+tablaDatos1.addEventListener('click', function (evento) {
     if (evento.target.tagName === 'TD') {
         let fila = evento.target.parentNode;
         let celdas = fila.getElementsByTagName('td');
         let objeto = {};
 
         for (let i = 0; i < celdas.length; i++) {
-        objeto[i] = celdas[i].innerHTML;
+            objeto[i] = celdas[i].innerHTML;
         }
         objetoTabla = objeto
     }
@@ -653,15 +716,16 @@ tablaDatos1.addEventListener('click', function(evento) {
     tabla1ciudad.value = objetoTabla[3]
 });
 
+
 let tablaDatos2 = document.getElementById("tabla2");
-tablaDatos2.addEventListener('click', function(evento) {
+tablaDatos2.addEventListener('click', function (evento) {
     if (evento.target.tagName === 'TD') {
         let fila = evento.target.parentNode;
         let celdas = fila.getElementsByTagName('td');
         let objeto = {};
 
         for (let i = 0; i < celdas.length; i++) {
-        objeto[i] = celdas[i].innerHTML;
+            objeto[i] = celdas[i].innerHTML;
         }
         objetoTabla = objeto
     }
@@ -679,11 +743,11 @@ tablaDatos2.addEventListener('click', function(evento) {
 $.ajax({
     url: 'http://localhost:8082/GetClientes',
     method: 'GET',
-    success: function(data) {
+    success: function (data) {
         //Creacion de la tabla
         let table1 = new DataTable('#tabla1', {
             select: true,
-            select:{
+            select: {
                 style: 'single'
             },
             data: data,
@@ -694,11 +758,11 @@ $.ajax({
                 { data: 'Correo_Electronico' }
             ]
         })
-        PushNotification('Success','Carga de datos exitosa')
+        PushNotification('Success', 'Carga de datos exitosa')
     },
-    error: function(xhr, status, error) {
+    error: function (xhr, status, error) {
         console.error(status, error);
-        PushNotification('Error','Carga de datos fallida')
+        PushNotification('Error', 'Carga de datos fallida')
     }
 });
 
@@ -706,11 +770,11 @@ $.ajax({
 $.ajax({
     url: 'http://localhost:8082/GetContratos',
     method: 'GET',
-    success: function(data) {
+    success: function (data) {
         //Creacion de la tabla
         let table1 = new DataTable('#tabla2', {
             select: true,
-            select:{
+            select: {
                 style: 'single'
             },
             data: data,
@@ -723,11 +787,11 @@ $.ajax({
                 { data: 'Monto_Final' }
             ]
         })
-        PushNotification('Success','Carga de datos exitosa')
+        PushNotification('Success', 'Carga de datos exitosa')
     },
-    error: function(xhr, status, error) {
+    error: function (xhr, status, error) {
         console.error(status, error);
-        PushNotification('Error','Carga de datos fallida')
+        PushNotification('Error', 'Carga de datos fallida')
     }
 });
 
@@ -735,7 +799,7 @@ $.ajax({
 //Generacion de las Graficas mediante los datos (data)
 config1 = {
     hideHover: 'true',
-    resize:true,
+    resize: true,
     element: 'line-chart',
     data: [
         { month: '2024-01', value: 20 },
@@ -760,129 +824,159 @@ config1 = {
 
 config2 = {
     hideHover: 'true',
-    resize:true,
+    resize: true,
     element: 'area-chart',
     data: [
-        { month: '2024-01', a: 5, b:7, c:12 },
-        { month: '2024-02', a: 10, b:9,c:11},
-        { month: '2024-03', a: 5 ,b:8,c:6 },
-        { month: '2024-04', a: 11 ,b:9,c:7 },
-        { month: '2024-05', a: 9,b:10 ,c:11 },
-        { month: '2024-06', a: 7,b:6 ,c:12 },
-        { month: '2024-07', a: 13,b:7 ,c:5 },
-        { month: '2024-08', a: 6, b:8 ,c:16},
-        { month: '2024-09', a: 6 ,b:9,c:7 },
-        { month: '2024-10', a: 11, b:10 ,c:9},
-        { month: '2024-11', a: 10,b:7,c:11  },
-        { month: '2024-12', a: 7 ,b:15,c:6 }
+        { month: '2024-01', a: 5, b: 7, c: 12 },
+        { month: '2024-02', a: 10, b: 9, c: 11 },
+        { month: '2024-03', a: 5, b: 8, c: 6 },
+        { month: '2024-04', a: 11, b: 9, c: 7 },
+        { month: '2024-05', a: 9, b: 10, c: 11 },
+        { month: '2024-06', a: 7, b: 6, c: 12 },
+        { month: '2024-07', a: 13, b: 7, c: 5 },
+        { month: '2024-08', a: 6, b: 8, c: 16 },
+        { month: '2024-09', a: 6, b: 9, c: 7 },
+        { month: '2024-10', a: 11, b: 10, c: 9 },
+        { month: '2024-11', a: 10, b: 7, c: 11 },
+        { month: '2024-12', a: 7, b: 15, c: 6 }
     ],
     xkey: 'month',
-    ykeys: ['a','b','c'],
-    labels: ['Lunes-Jueves','Viernes','Fin de Semana'],
-    lineColors: ['#035a7c','#002488','#3b0088'],
+    ykeys: ['a', 'b', 'c'],
+    labels: ['Lunes-Jueves', 'Viernes', 'Fin de Semana'],
+    lineColors: ['#035a7c', '#002488', '#3b0088'],
     ymax: 40,
 }; Morris.Area(config2);
 
 
 config3 = {
     hideHover: 'true',
-    resize:true,
+    resize: true,
     element: 'bar-chart',
     data: [
-        { y: 'Enero', a: 15000, b: 20000, c: 10000},
-        { y: 'Febrero', a: 22000, b: 18000, c: 25000},
-        { y: 'Marzo', a: 28000, b: 16000, c: 21000},
-        { y: 'Abril', a: 12000, b: 27000, c: 19000},
-        { y: 'Mayo', a: 25000, b: 14000, c: 23000},
-        { y: 'Junio', a: 17000, b: 24000, c: 20000},
-        { y: 'Julio', a: 19000, b: 22000, c: 27000},
-        { y: 'Agosto', a: 23000, b: 19000, c: 18000},
-        { y: 'Septiembre', a: 20000, b: 25000, c: 17000},
-        { y: 'Octubre', a: 16000, b: 21000, c: 24000},
-        { y: 'Noviembre', a: 21000, b: 17000, c: 22000},
-        { y: 'Diciembre', a: 18000, b: 23000, c: 16000}
+        { y: 'Enero', a: 15000, b: 20000, c: 10000 },
+        { y: 'Febrero', a: 22000, b: 18000, c: 25000 },
+        { y: 'Marzo', a: 28000, b: 16000, c: 21000 },
+        { y: 'Abril', a: 12000, b: 27000, c: 19000 },
+        { y: 'Mayo', a: 25000, b: 14000, c: 23000 },
+        { y: 'Junio', a: 17000, b: 24000, c: 20000 },
+        { y: 'Julio', a: 19000, b: 22000, c: 27000 },
+        { y: 'Agosto', a: 23000, b: 19000, c: 18000 },
+        { y: 'Septiembre', a: 20000, b: 25000, c: 17000 },
+        { y: 'Octubre', a: 16000, b: 21000, c: 24000 },
+        { y: 'Noviembre', a: 21000, b: 17000, c: 22000 },
+        { y: 'Diciembre', a: 18000, b: 23000, c: 16000 }
     ],
     xkey: 'y',
-    ykeys: ['a','b','c'],
-    labels: ['Servicios','Mantenimiento','Productos'],
-    pointFillColors:['#ffffff'],
+    ykeys: ['a', 'b', 'c'],
+    labels: ['Servicios', 'Mantenimiento', 'Productos'],
+    pointFillColors: ['#ffffff'],
     pointStrokeColors: ['black'],
-    barColors:['darkred','#b90000','#ff3700'],
+    barColors: ['darkred', '#b90000', '#ff3700'],
     stacked: true,
 }; Morris.Bar(config3);
 
 
 config4 = {
     hideHover: 'true',
-    resize:true,
+    resize: true,
     element: 'donut-chart',
     data: [
-    {label: "PayPal", value: 15},
-    {label: "Mastercard", value: 45},
-    {label: "Visa", value: 25},
-    {label: "Oxxo", value: 10},
-    {label: "GooglePlay", value: 5},
+        { label: "PayPal", value: 15 },
+        { label: "Mastercard", value: 45 },
+        { label: "Visa", value: 25 },
+        { label: "Oxxo", value: 10 },
+        { label: "GooglePlay", value: 5 },
     ],
     formatter: function (y, data) { return y + '%' },
 }; Morris.Donut(config4);
 
 
 //Boton de Insertar Cliente
-document.getElementById("acceptbuttonCliente").addEventListener("click", async () => {
-    console.log("clic");
-    const formData = new FormData(document.getElementById("tabla1form"));
-    const jsonData = {};
+// document.getElementById("acceptbuttonCliente").addEventListener("click", async () => {
+//     console.log("clic");
+//     const formData = new FormData(document.getElementById("tabla1form"));
+//     const jsonData = {};
 
-    for (const [key, value] of formData.entries()) {
-        jsonData[key] = value;
-    }
+//     for (const [key, value] of formData.entries()) {
+//         jsonData[key] = value;
+//     }
 
-    console.log("Envio: ", jsonData);
+//     console.log("Envio: ", jsonData);
 
-    await fetch('http://localhost:8082/SaveCliente', {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(jsonData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert("Datos guardados correctamente");
-        } else {
-            alert("Error al guardar los datos: " + data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error al enviar la solicitud:', error);
-    });
-});
+//     await fetch('http://localhost:8082/SaveCliente', {
+//         method: 'POST',
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify(jsonData)
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         if (data.success) {
+//             alert("Datos guardados correctamente");
+//         } else {
+//             alert("Error al guardar los datos: " + data.message);
+//         }
+//     })
+//     .catch(error => {
+//         console.error('Error al enviar la solicitud:', error);
+//     });
+// });
 
 //Boton de Insertar Contrato
-document.getElementById("acceptbuttonContrato").addEventListener("click", async () => {
-    console.log("clic");
-    const formData = new FormData(document.getElementById("tabla2form"));
-    const jsonData = {};
+// document.getElementById("acceptbuttonContrato").addEventListener("click", async () => {
+//     console.log("clic");
+//     const formData = new FormData(document.getElementById("tabla2form"));
+//     const jsonData = {};
 
-    for (const [key, value] of formData.entries()) {
-        jsonData[key] = value;
-    }
+//     for (const [key, value] of formData.entries()) {
+//         jsonData[key] = value;
+//     }
 
-    console.log("Envio: ", jsonData);
+//     console.log("Envio: ", jsonData);
 
-    await fetch('http://localhost:8082/SaveCliente', {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(jsonData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert("Datos guardados correctamente");
-        } else {
-            alert("Error al guardar los datos: " + data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error al enviar la solicitud:', error);
-    });
-});
+//     await fetch('http://localhost:8082/SaveCliente', {
+//         method: 'POST',
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify(jsonData)
+//     })
+//         .then(response => response.json())
+//         .then(data => {
+//             if (data.success) {
+//                 alert("Datos guardados correctamente");
+//             } else {
+//                 alert("Error al guardar los datos: " + data.message);
+//             }
+//         })
+//         .catch(error => {
+//             console.error('Error al enviar la solicitud:', error);
+//         });
+// });
+
+//Boton de Actulizar Contrato
+// document.getElementById("acceptbuttonContrato").addEventListener("click", async () => {
+//     console.log("clic");
+//     const formData = new FormData(document.getElementById("tabla1form"));
+//     const jsonData = {};
+
+//     for (const [key, value] of formData.entries()) {
+//         jsonData[key] = value;
+//     }
+
+//     console.log("Envio: ", jsonData);
+
+//     await fetch('http://localhost:8082/UpdateCliente', {
+//         method: 'PUT',
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify(jsonData)
+//     })
+//         .then(response => response.json())
+//         .then(data => {
+//             if (data.success) {
+//                 alert("Datos Actualizar correctamente");
+//             } else {
+//                 alert("Error al Actualizar los datos: " + data.message);
+//             }
+//         })
+//         .catch(error => {
+//             console.error('Error al enviar la solicitud:', error);
+//         });
+// });
