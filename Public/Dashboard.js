@@ -455,9 +455,13 @@ document.querySelectorAll('.acceptbutton').forEach(function (boton) {
 
         switch (tablaFiltra) {
             case 'Opcion1':
+
+                //obtencion del elemento formbox mas cercano al click del usuario
                 widget = e.target.closest('.formBox')
+                //obtencion del elemento form hijo directo del elemento formbox
                 forma = widget.firstElementChild;
 
+                //Revisar la validez del form
                 if (forma.checkValidity()) {
                     //let formData = new FormData(document.getElementById("tabla1form"));
                     let formData = new FormData(forma);
@@ -465,6 +469,7 @@ document.querySelectorAll('.acceptbutton').forEach(function (boton) {
                     for (const [key, value] of formData.entries()) {
                         jsonData[key] = value;
                     }
+                    //Desaparece el widget
                     widget.style.opacity = '0'
                     widget.style.pointerEvents = 'none'
 
@@ -528,6 +533,7 @@ document.querySelectorAll('.acceptbutton').forEach(function (boton) {
                             break;
 
                         case 'Delete':
+                            //Metodo que se usa para la opcion
                             console.log('CLIENTES DELETE')
 
                             //DELETE
@@ -560,7 +566,10 @@ document.querySelectorAll('.acceptbutton').forEach(function (boton) {
                 }
                 break;
             case 'Opcion2':
+
+                //obtencion del elemento formbox mas cercano al click del usuario
                 widget = e.target.closest('.formBox')
+                //obtencion del elemento form hijo directo del elemento formbox
                 forma = widget.firstElementChild;
 
                 if (forma.checkValidity()) {
