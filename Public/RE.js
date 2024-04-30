@@ -287,6 +287,8 @@ let array2 = [
 
 //Generacion de las Graficas mediante los datos (data)
 config1 = {
+    ordering: true,
+    
     hideHover: 'always',
     resize:true,
     element: 'line-chart',
@@ -312,6 +314,7 @@ config1 = {
 }; Morris.Line(config1);
 
 config2 = {
+    ordering: true,
     hideHover: 'always',
     resize:true,
     element: 'area-chart',
